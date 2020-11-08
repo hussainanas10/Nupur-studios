@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<!-- Mirrored from web.dotthemes.com/html/storola-demo/storola//register by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 02 May 2020 16:11:00 GMT -->
+<head>
+    <%- include('partials/categoryHead.ejs')  %> 
+    
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <script>
+        // $(document).ready(function(){
+        //     var from,email,username,password,subject,text;
+        //     $("#emailing").click(function(){     
+        //         email=$("#email").val();     
+        //         username=$("#username").val();     
+        //         password=$("#password").val();     
+
+        //         $.get("/signin",{email:email,username:username,password:password},function(data){
+        //         if(data=="sent")
+        //         {
+        //             toastr.success("Email is been sent at "+email+" . Please check inbox !")
+        //             // alert("Email is been sent at "+email+" . Please check inbox !");
+        //         }
+        //         if(data=="already registered")
+        //         {
+        //             toastr.info('Already registered with email '+email)
+        //         }
+        
+        //      });
+        //     });
+        // });
+        </script>   
+</head>
+
+<body>
+    <!-- HEADER START HERE -->
+    <%- include('partials/header.ejs')  %> 
+   
+    <!-- HEADER END HERE -->
+
+    <!-- ABOUT PROMO START HERE -->
+    <div class="promo-area" style="background-image: url(images/banner/inner-top.jpg)">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="promo-text">
+                        <h2>MY ACCOUNT</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ABOUT PROMO END HERE -->
+
+    <!-- BREADCRUMB START HERE -->
+    <div class="about-breadcrumb">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="#">Home</a>
+                        </li>
+                        <li class="breadcrumb-item">Page</li>
+                        <li class="breadcrumb-item active">My account</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- BREADCRUMB END HERE -->
+
+    <!-- CONTACT AREA START HERE -->
+    <main class="account-area main-content">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-5 col-sm-5">
+                    <div class="register-wrap">
+                        <h3>register</h3>
+                        <!-- <form action="/signup" method="POST"> -->
+                            <div class="form-group">
+                                <label for="name">Username<span class="required">*</span></label>
+                                <input type="text" name="username" id="username" autocomplete="off" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="name">Email Address<span class="required">*</span></label>
+                                <input type="email" name="email" id="email" autocomplete="off" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="password">Password <span class="required">*</span></label>
+                                <input type="password" name="password" id="password" autocomplete="off" required>
+                            </div>
+                            <div class="form-group">
+                            <button class="custom-btn" id="send_email" type="submit" value="Submit">register</button>
+                            </div>
+                            <div class="alertu">
+                                <span class="closebtnu" onclick="this.parentElement.style.display='none';">&times;</span>
+                                <span id="message" ></span>
+                            </div>
+                        <!-- </form> -->
+                    </div>
+                </div>
+                <div class="col-md-5 col-md-offset-2 col-sm-5 col-sm-offset-2">
+                    <div class="loging-wrap">
+                        <h3>login</h3>
+                        <form action="/login" method="POST">
+                            <div class="form-group">
+                                <label for="name">Email Address<span class="required">*</span></label>
+                                <input type="text"  name="email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="password">Password<span class="required">*</span></label>
+                                <input type="password" name="password" required>
+                            </div>
+                            <div class="form-group form-inline">
+                                <button class="custom-btn red">login</button>
+                                <!-- <label class="inline"><input type="checkbox"> Remember me</label> -->
+                            </div>
+                            <!-- <p class="lost-pass"><a href="#">lost Password?</a></p> -->
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <!-- CONTACT AREA END HERE -->
+
+
+
+    <%- include('partials/footer.ejs') %> 
+    <%- include('partials/foot.ejs') %>
+    <script>
+    $(document).ready(function(){
+        $('.alertu').hide();
+    var from,email,password,username,subject,text;
+    $("#send_email").click(function(){    
+        email=$("#email").val();     
+        password=$("#password").val();     
+        username=$("#username").val();
+        $('.alertu').show();
+        $("#message").text("Sending E-mail...Please wait");
+        $.post("/signup",{email:email,password:password,username:username},function(data){  
+        $('.alertu').hide();
+        if(data=="sent")
+        {
+        $('.alertu').show();   
+            $("#message").empty().html("<p>Email is been sent at "+email+" . Please check inbox !</p>");
+        }
+        else if(data == "error")
+        {
+        $('.alertu').show();
+            $("#message").empty().html("<p>Email is been sent at "+to+" . Please check inbox !</p>");
+        }
+        });
+    });
+});
+    // $.post({
+    //     // traditional: true,
+    //     url: '/signup',
+    //     contentType: 'application/json',
+    //     data: JSON.stringify( profiles ),
+    //     dataType: 'json',
+    //     success: function(response){ console.log( response ); alert('success') }
+    //     } );
+    // });
+
+
+    </script> 
+</body>
+
+
+<!-- Mirrored from web.dotthemes.com/html/storola-demo/storola//register by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 02 May 2020 16:11:00 GMT -->
+</html>

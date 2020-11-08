@@ -1,0 +1,88 @@
+<div id="layoutSidenav_nav">
+    <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+        <div class="sb-sidenav-menu">
+            <div class="nav">
+                <a class="nav-link active" href="/admin/dashboard">
+                    <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                    Dashboard
+                </a>
+                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+                    <div class="sb-nav-link-icon"><i class="fas fa-newspaper"></i></div>
+                    Posts
+                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                </a>
+                <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
+                    <nav class="sb-sidenav-menu-nested nav">
+                        <a class="nav-link sub_nav_link" href="/admin/posts">All Posts</a>
+                        <a class="nav-link sub_nav_link" href="/admin/add-post">Add New</a>
+                        <a class="nav-link sub_nav_link" href="/admin/post-categories">Categories</a>
+                        <a class="nav-link sub_nav_link" href="/admin/post-tags">Tags</a>
+                    </nav>
+                </div>		
+
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseCategories" aria-expanded="false" aria-controls="collapseCategories">
+                    <div class="sb-nav-link-icon"><i class="fas fa-list"></i></div>
+                    Categories
+                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                </a>
+                <div class="collapse" id="collapseCategories" aria-labelledby="headingTwo" data-parent="#sidenavAccordion">
+                    <nav class="sb-sidenav-menu-nested nav">
+                        <a class="nav-link sub_nav_link" href="/admin/categories">All Categories</a>
+                        <a class="nav-link sub_nav_link" href="/admin/add-category">Add Category</a>
+                    </nav>
+                </div>
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseProducts" aria-expanded="false" aria-controls="collapseProducts">
+                    <div class="sb-nav-link-icon"><i class="fas fa-box"></i></div>
+                    Products
+                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                </a>
+                <div class="collapse" id="collapseProducts" aria-labelledby="headingTwo" data-parent="#sidenavAccordion">
+                    <nav class="sb-sidenav-menu-nested nav">
+                        <a class="nav-link sub_nav_link" href="/admin/products">All Products</a>
+                        <a class="nav-link sub_nav_link" href="/admin/add-product">Add Product</a>
+                    </nav>
+                </div>
+                <a class="nav-link" href="/admin/orders">
+                    <div class="sb-nav-link-icon"><i class="fas fa-cart-arrow-down"></i></div>
+                    Orders
+                </a>
+                <a class="nav-link" href="/admin/customers">
+                    <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
+                    Users
+                </a>
+                <a class="nav-link" href="/admin/coupons">
+                    <div class="sb-nav-link-icon"><i class="fas fa-gift"></i></div>
+                    Coupons
+                </a>
+                <!-- <a class="nav-link" href="pages.html">
+                    <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
+                    Pages
+                </a> -->
+                <a class="nav-link" href="/admin/messages">
+                    <div class="sb-nav-link-icon"><i class="fas fa-layer-group"></i></div>
+                    Messages
+                </a>
+                <!-- <a class="nav-link" href="/admin/updater">
+                    <div class="sb-nav-link-icon"><i class="fas fa-cloud-upload-alt"></i></div>
+                    Updater
+                </a> -->
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseSettings" aria-expanded="false" aria-controls="collapseSettings">
+                    <div class="sb-nav-link-icon"><i class="fas fa-cog"></i></div>
+                    Setting
+                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                </a>
+                <div class="collapse" id="collapseSettings" aria-labelledby="headingTwo" data-parent="#sidenavAccordion">
+                    <nav class="sb-sidenav-menu-nested nav">
+                        <a class="nav-link sub_nav_link" href="/admin/general-setting">General Settings</a>
+                        <a class="nav-link sub_nav_link" href="/admin/payment-setting">Payment Settings</a>
+                        <a class="nav-link sub_nav_link" href="/admin/email-setting">Email Settings</a>
+                    </nav>
+                </div>
+                <a class="nav-link" href="/admin/reports">
+                    <div class="sb-nav-link-icon"><i class="fas fa-chart-bar"></i></div>
+                    Reports
+                </a>
+            </div>
+        </div>
+    </nav>
+</div>

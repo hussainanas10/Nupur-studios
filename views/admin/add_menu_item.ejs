@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Mirrored from gambolthemes.net/html-items/gambo_admin/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 05 Jun 2020 23:05:42 GMT -->
+<%- include('../admin-partials/head.ejs') %> 
+
+    <body class="sb-nav-fixed">
+		<%- include('../admin-partials/topbar.ejs')  %> 
+        <div id="layoutSidenav">
+			<%- include('../admin-partials/menu.ejs')  %> 
+            <div id="layoutSidenav_content">
+                <main>
+                    <div class="container-fluid">
+                        <h2 class="mt-30 page-title">Menu</h2>
+                        <ol class="breadcrumb mb-30">
+                            <li class="breadcrumb-item"><a href="/admin">Dashboard</a></li>
+                            <li class="breadcrumb-item"><a href="/admin/menu">Menu</a></li>
+                            <li class="breadcrumb-item"><a href="/admin/menu/<%= menu.id %>">Edit Menu</a></li>
+                            <li class="breadcrumb-item active">Create Menu Item</li>
+                        </ol>
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6">
+                                    <div class="card card-static-2 mb-30">
+                                        <div class="card-title-2">
+                                            <h4>Add New Category</h4>
+                                        </div>
+                                        <div class="card-body-table">
+                                        <form action="/admin/<%= menu.id %>/create" method="POST">
+                                            <div class="news-content-right pd-20">
+                                                <div class="form-group">
+                                                    <label class="form-label">Name*</label>
+                                                    <input type="text" name="category" class="form-control" placeholder="Item Name">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="form-label">Type*</label>
+                                                    <select name="type" id="type" class="form-control">
+                                                        <option selected>Category</option>
+                                                        <option>Page</option>
+                                                        <option>Url</option>
+                                                    </select>
+                                                </div>
+                                                <div class="form-group"  id="category">
+                                                    <label class="form-label">Category</label>
+                                                    <select name="category" class="form-control">
+                                                        <option selected><%= categories[0].category %></option>
+                                                        <% for(var i=1;i<=categories.length-1;i++) {%> 
+                                                        <option><%= categories[i].category %></option>
+                                                        <% } %> 
+                                                    </select>
+                                                </div>
+                                                <div class="form-group" id="page">
+                                                    <label class="form-label">Page*</label>
+                                                    <select name="page" class="form-control">
+                                                        <option selected><%= pages[0].name %></option>
+                                                        <% for(var i=1;i<=pages.length-1;i++) {%> 
+                                                        <option><%= pages[i].name %></option>
+                                                        <% } %> 
+                                                    </select>
+                                                </div>
+                                                <div class="form-group" id="url">
+                                                    <label class="form-label">Url*</label>
+                                                    <input type="text" name="url" class="form-control" placeholder="Url">
+                                                </div>
+                                                <div class="form-group" id="page">
+                                                    <label class="form-label">Parent Menu*</label>
+                                                    <select name="parent" class="form-control">
+                                                        <option selected><%= menu.menuItems[0].name %></option>
+                                                        <% for(var i=1;i<=menu.menuItems.length-1;i++) {%> 
+                                                        <option><%= menu.menuItems[i].name %></option>
+                                                        <% } %> 
+                                                    </select>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label for="example-text-input" class="col-sm-4 form-label">Status*</label>
+                                                    <div class="checkbox col-sm-8">
+                                                        <label><input type="checkbox" name="status" >Enable the menu</label>
+                                                    </div>
+                                                </div>
+
+                                                <button class="save-btn hover-btn" type="submit">Add New Category</button>
+                                            </div>
+                                        </form> 
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                    </div>
+                </main>
+
+            </div>
+        </div>
+        <script src="/js/jquery-3.4.1.min.js"></script>
+        <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <script src="/js/scripts.js"></script>
+        <script>
+            $(document).ready(function(){
+                $(function() {
+                    $('#page').hide(); 
+                    $('#url').hide(); 
+                    $('#type').change(function(){
+                        if($('#type').val() == 'Category') {
+                            $('#category').show(); 
+                            $('#page').hide(); 
+                            $('#url').hide(); 
+                        } 
+                        else if($('#type').val() == 'Page'){
+                            $('#category').hide(); 
+                            $('#page').show(); 
+                            $('#url').hide(); 
+                        }
+                        else if($('#type').val() == 'Url'){
+                            $('#category').hide(); 
+                            $('#page').hide(); 
+                            $('#url').show(); 
+                        }
+                    });
+                });
+            }); 
+        
+        </script>
+<!--      
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>   -->
+    </body>
+
+<!-- Mirrored from gambolthemes.net/html-items/gambo_admin/menu.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 05 Jun 2020 23:09:39 GMT -->
+</html>

@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<%- include('../admin-partials/head.ejs')  %> 
+		<!-- froala Editor Stylesheets -->
+    <body class="sb-nav-fixed">
+		<%- include('../admin-partials/topbar.ejs') %> 
+        <div id="layoutSidenav">
+			<%- include('../admin-partials/menu.ejs') %> 
+            <div id="layoutSidenav_content">
+                <main>
+                    <div class="container-fluid">
+                        <h2 class="mt-30 page-title">Orders</h2>
+                        <ol class="breadcrumb mb-30">
+                            <li class="breadcrumb-item"><a href="/admin/dashboard">Dashboard</a></li>
+                            <li class="breadcrumb-item"><a href="/admin/products">Products</a></li>
+                            <li class="breadcrumb-item active">Product View</li>
+                        </ol>
+                        <div class="row">
+							<div class="col-lg-6 col-md-6">
+								<div class="card card-static-2 mb-30">
+									<div class="card-body-table">
+										<div class="shopowner-content-left text-center pd-20">
+
+											<div class="shopowner-dt-left mt-4">
+												<h4><%= product.title %></h4>
+											</div>
+
+											<div class="shopowner-dts">
+												<div class="shopowner-dt-list">
+													<span class="left-dt">Tagline</span>
+													<span class="right-dt">
+														<%= product.tagline %>
+													</span>
+												</div>
+												<div class="shopowner-dt-list">
+													<span class="left-dt">description</span>
+													<span class="right-dt"><%= product.description %></span>
+												</div>
+												<div class="shopowner-dt-list">
+													<span class="left-dt">Cateogry</span>
+													<span class="right-dt"><%= product.category %></span>
+												</div>
+												<div class="shopowner-dt-list">
+													<span class="left-dt">Top Selling</span>
+													<span class="right-dt"><%= product.topselling %></span>
+												</div>
+												<div class="shopowner-dt-list">
+													<span class="left-dt">Basic Price</span>
+													<span class="right-dt">
+														<% if(settings.currency == 'IND') {%> 
+															<span> <i class="fa fa-rupee"></i><%= product.basicPrice  %></span>
+														 <% }else{ %>
+															 <span><i class="fa fa-dollar"></i><%= product.basicPrice  %></span>
+														 <% } %> 
+													</span>
+												</div>
+												<div class="shopowner-dt-list">
+													<span class="left-dt">Standard Price</span>
+													<span class="right-dt">
+														<% if(settings.currency == 'IND') {%> 
+															<span> <i class="fa fa-rupee"></i><%= product.standardPrice  %></span>
+														 <% }else{ %>
+															 <span><i class="fa fa-dollar"></i><%= product.standardPrice  %></span>
+														 <% } %> 
+														
+													</span>
+												</div>
+												<div class="shopowner-dt-list">
+													<span class="left-dt">Premium Price</span>
+													<span class="right-dt">
+														<% if(settings.currency == 'IND') {%> 
+															<span> <i class="fa fa-rupee"></i><%= product.premiumPrice  %></span>
+														 <% }else{ %>
+															 <span><i class="fa fa-dollar"></i><%= product.premiumPrice  %></span>
+														 <% } %> 
+														
+													</span>
+												</div>
+												<div class="shopowner-dt-list">
+													<span class="left-dt">Basic Divery Time</span>
+													<span class="right-dt"><%= product.basicDeliveryTime %></span>
+												</div>
+												<div class="shopowner-dt-list">
+													<span class="left-dt">Standard Delivery Time</span>
+													<span class="right-dt"><%= product.standardDeliveryTime %></span>
+												</div>
+												<div class="shopowner-dt-list">
+													<span class="left-dt">Premium Delivery Time</span>
+													<span class="right-dt"><%= product.premiumDeliveryTime  %></span>
+												</div>
+												<div class="shopowner-dt-list">
+													<span class="left-dt">Basic Revisions</span>
+													<span class="right-dt"><%= product.basicRevisions  %></span>
+												</div>
+												<div class="shopowner-dt-list">
+													<span class="left-dt">Standard Revisions</span>
+													<span class="right-dt"><%= product.standardRevisions  %></span>
+												</div>
+												<div class="shopowner-dt-list">
+													<span class="left-dt">Premium Revisions</span>
+													<span class="right-dt"><%= product.premiumRevisions  %></span>
+												</div>
+												<div class="shopowner-dt-list">
+													<span class="left-dt">Basic Concepts</span>
+													<span class="right-dt"><%= product.basicConcepts  %></span>
+												</div>
+												<div class="shopowner-dt-list">
+													<span class="left-dt">Standard Concepts</span>
+													<span class="right-dt"><%= product.standardConcepts  %></span>
+												</div>
+												<div class="shopowner-dt-list">
+													<span class="left-dt">Premium Concepts</span>
+													<span class="right-dt"><%= product.premiumConcepts  %></span>
+												</div>
+												<div class="shopowner-dt-list">
+													<span class="left-dt">Basic Source</span>
+													<span class="right-dt"><%= product.basicSource  %></span>
+												</div>
+												<div class="shopowner-dt-list">
+													<span class="left-dt">Standard Source</span>
+													<span class="right-dt"><%= product.standardSource  %></span>
+												</div>
+												<div class="shopowner-dt-list">
+													<span class="left-dt">Premium Source</span>
+													<span class="right-dt"><%= product.premiumSource  %></span>
+												</div>
+												<div class="shopowner-dt-list">
+													<span class="left-dt">Basic Logo</span>
+													<span class="right-dt"><%= product.basicLogo  %></span>
+												</div>
+												<div class="shopowner-dt-list">
+													<span class="left-dt">Standard Logo</span>
+													<span class="right-dt"><%= product.standardLogo  %></span>
+												</div>
+												<div class="shopowner-dt-list">
+													<span class="left-dt">Premium Logo</span>
+													<span class="right-dt"><%= product.premiumLogo  %></span>
+												</div>
+												
+
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<div class="col-lg-6 col-md-6">
+								<div class="card card-static-2 mb-30">
+									<div class="card-body-table">
+										<div class="shopowner-content-left text-center pd-20">
+											<div class="shopowner-dt-left mt-4">
+												<h4>Product Images</h4>
+											</div>
+											<% for(var i=0;i<=product.images.length-1;i++) {%> 
+												<div class="m-4">
+													<img src="/images/uploads/<%= product.images[i] %>" style="width: 300px; height: 150px;" class="img-fluid" alt="">
+												</div>
+											<% } %> 
+										</div>
+									</div>
+								</div>
+							</div>
+                        </div>
+                    </div>
+                </main>
+                
+            </div>
+        </div>
+        <script src="/js/jquery-3.4.1.min.js"></script>
+        <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <script src="/js/scripts.js"></script>
+       
+    </body>
+
+<!-- Mirrored from gambolthemes.net/html-items/gambo_admin/order_view.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 05 Jun 2020 23:09:42 GMT -->
+</html>

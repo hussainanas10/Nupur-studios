@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<!-- Mirrored from web.dotthemes.com/html/storola-demo/storola/product-details.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 02 May 2020 16:11:16 GMT -->
+<%- include('partials/categoryHead.ejs')  %> 
+
+<body>
+     <%- include('partials/header.ejs')  %> 
+    <!-- HEADER END HERE -->
+
+    <!-- ABOUT PROMO START HERE -->
+    <div class="promo-area" style="background-image: url(/images/banner/inner-top.jpg)">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="promo-text">
+                        <h4>Single Banner or Slide Here</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ABOUT PROMO END HERE -->
+
+    <!-- BREADCRUMB START HERE -->
+    <div class="about-breadcrumb">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="#">Home</a>
+                        </li>
+                        <li class="breadcrumb-item active">Products</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- BREADCRUMB END HERE -->
+
+    <!-- PRODUCT DETAILS AREA START HERE -->
+    <section class="product-area shop-sidebar shop section">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-3 col-md-4 col-12">
+            <div class="shop-sidebar">
+                <!-- Single Widget -->
+                <div class="single-widget category">
+                  <h3 class="title"><%= category %> </h3>
+                  <ul class="categor-list" style="padding-left:10px">
+                    <ul><a href="#">Graphics & Design</a></ul>
+                    <ul><a href="#">Logo Design</a></ul>
+                    <ul><a href="#">Game Design</a></ul>
+                    <ul><a href="#">Illustration</a></ul>
+                    <ul><a href="#">Brochure Design</a></ul>
+                    <ul><a href="#">Poster Design</a></ul>
+                    <ul><a href="#">Flyer Design</a></ul>
+                    <ul><a href="#">Book Design</a></ul>
+                    <ul><a href="#">Storyboards</a></ul>
+                    <ul><a href="#">Postcard Design</a></ul>
+                  </ul>
+                </div>
+                <!--/ End Single Widget -->
+            </div>
+          </div>
+          <div class="col-lg-9 col-md-8 col-12">
+            <div class="row">
+              <div class="col-12">
+                <!-- Shop Top -->
+                <div class="promo-item-wrap">
+                    <div class="tab-header clearfix">
+                        <!-- Nav tabs -->
+                        <ul class="product-tab pull-left" role="tablist">
+                            <li role="presentation" class="active"><a href="#seller" aria-controls="seller" role="tab" data-toggle="tab">new items</a>
+                            </li>
+                            <li role="presentation"><a href="#popular" aria-controls="popular" role="tab" data-toggle="tab">popular items</a>
+                            </li>
+                        </ul>
+                        <div class="tab-viewport pull-right hidden-xs">
+                            <div class="filter-form">
+                                <h5 class="filter-title">sort by: </h5>
+                                <div class="filter-form">
+                                    <form action="#">
+                                        <select id="seltect-opt">
+                                            <option value="Defauld">Default</option>
+                                            <option value="Newest">Newest items</option>
+                                            <option value="Trending">Trending items</option>
+                                            <option value="Best">Best sellers</option>
+                                            <option value="Price">Price: low to high</option>
+                                            <option value="Price">Price: high to low</option>
+                                        </select>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="view-tab">
+                                <ul role="tablist">
+                                    <li><a href="/categories?category=<%= category.split(' ').join('+')  %>"><i class="fa fa-th"></i></a></li>
+                                    <li><a href="/categories/list?category=<%= category.split(' ').join('+') %>"><i class="fa fa-th-list"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                <!--/ End Shop Top -->
+                </div>
+            </div>
+            <div class="row">
+              <!-- TAB PANES CONTENT START -->
+              <div class="tab-content">
+                <div role="tabpanel" class="tab-pane fade in active" id="seller">
+                    <div class="row">
+                        <!-- Single Product Start -->
+                    <% for(var i=products.length-1; i>=0 ; i--){ %> 
+                        <div class="col-md-12">
+                            <div class="item-demo item-list">
+                                <figure>
+                                    <img src="/images/uploads/<%= products[i].images[0] %>" alt="Images">
+                                    <div class="product-caption">
+                                        <div class="caption-cel">
+                                            <div class="product-link">
+                                                <div>
+                                                    <div>
+                                                        <a href="/products/details/<%= products[i].id %>">View Details <span><i class="fa fa-eye"></i></span></a>
+                                                    </div>
+                                                    <div>
+                                                        <a href="/cart/add/<%= products[i].id %>/?plan=basic">Add to Cart<span><i class="fa fa-shopping-cart"></i></span></a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </figure>
+                                <div class="product-info">
+                                    <div class="product-header">
+                                        <h3 class="product-name"><a href="/products/details/<%= products[i].id %>"><%= products[i].title %> </a>
+                                            <% if(settings.currency == 'IND') {%> 
+                                                <span> <i class="fa fa-rupee" style="color:#533396"></i> <%= products[i].basicPrice %> </span>
+                                             <% }else{ %>
+                                                 <span><i class="fa fa-dollar" style="color:#533396"></i><%= products[i].basicPrice %> </span>
+                                             <% } %>
+                                        </h3>
+                                        <span class="p-author">
+                                            <a href="#">@admin</a>
+                                        </span>
+                                        <P><%= products[i].description %></P>
+                                    </div>
+                                    <div class="product-meta">
+                                        <span class="meta-download">
+                                            <i class="fa fa-cloud-download"></i><%= products[i].orders %> 
+                                        </span>
+                                        <span class="meta-love">
+                                            <i class="fa fa-heart"></i><%= products[i].favorites %> 
+                                        </span>
+                                        <span class="meta-rating">
+                                            <% for(var k=1;k<=5;k++){ %> 
+                                                <% if(k<=products[i].rating){ %> 
+                                                <i class="fa fa-star"></i>
+                                                <% }else{ %>
+                                                <i class="fa fa-star-o"></i>
+                                                <% } %> 
+                                            <% } %>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Single Product End -->
+                    <% } %> 
+                    </div>
+                </div>
+                <!-- BEST SELLTER TAB PANEL END -->
+
+
+            </div>
+          </div>
+      </div>
+  </div>
+</section>
+<!-- FEATEAR AREA END HERE -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- PRODUCT DETAILS AREA END HERE -->
+
+    <!-- Product promo -->
+    <section class="sample-area section-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 col-sm-4">
+                    <div class="double-promo">
+                        <h3 class="double-promo-heading"><b>Your Terms</b></h3>
+                        <p>Whatever you need to simplify your to do list, no matter your budget.</p>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-4">
+                    <div class="double-promo">
+                        <h3 class="double-promo-heading"><b>Your Timeline</b></h3>
+                        <p>Find services on your goals and deadlines, it's that simple.</p>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-4">
+                    <div class="double-promo">
+                        <h3 class="double-promo-heading"><b>Your Safety</b></h3>
+                        <p>Your payment is always secure, Nupur is built to protect your peace of mind.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+     <!-- Product promo END -->
+    <!-- FOOTER AREA START HERE -->
+    <%- include('partials/footer.ejs') %> 
+   
+
+    <%- include('partials/foot.ejs')  %> 
+</body>
+
+
+<!-- Mirrored from web.dotthemes.com/html/storola-demo/storola/product-details.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 02 May 2020 16:11:17 GMT -->
+</html>

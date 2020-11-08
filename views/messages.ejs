@@ -1,0 +1,114 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+    <%- include('partials/dashHead.ejs') %> 
+
+
+<body class="no-overflow">
+    <%- include('partials/dashHeader.ejs') %> 
+
+    <div class="wrapper ">
+        <div id="sidebar-margin" class="sidebar" data-color="purple" data-background-color="danger">
+            <div class="sidebar-wrapper">
+                <ul class="nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/dashboard">
+                            <i class="material-icons">dashboard</i>
+                            <p>Dashboard</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/profile">
+                            <i class="material-icons">person</i>
+                            <p>User Profile</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/orders">
+                            <i class="material-icons">content_paste</i>
+                            <p>orders</p>
+                        </a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/messages">
+                            <i class="material-icons">library_books</i>
+                            <p>messages</p>
+                        </a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link" href="/bookmarks">
+                            <i class="material-icons">bubble_chart</i>
+                            <p>bookmarks</p>
+                        </a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link" href="/logout">
+                            <i class="material-icons">login</i>
+                            <p>Logout</p>
+                        </a>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+        <div class="main-panel">
+        
+            <div class="content mt-0 pt-0">
+                <div class="container-fluid">
+                    <!-- chatbox here-->
+
+                    <div class="container py-5 px-4">
+                        <!-- For demo purpose-->
+
+
+                        <div class="row rounded-lg overflow-hidden shadow">
+                            <div class="container">
+                                <div class="col-12 px-0">
+
+                                    <div class="px-4 py-5 chat-box">
+
+                                        <% for(var i=0;i<=messages.length-1;i++){ %> 
+                                            <% console.log(messages[i]) %> 
+                                            <% if(messages[i].senderId == user.id) {%> 
+                                                <!-- Reciever Message-->
+                                                <div class="media w-50 ml-auto mb-3">
+                                                  <div class="media-body">
+                                                    <div class="bg-primary rounded py-2 px-3 mb-2">
+                                                      <p class="text-small mb-0 text-white"><%= messages[i].content %></p>
+                                                    </div>
+                                                    <p class="small text-muted"><%= messages[i].createdAt.toString().substring(0,15) %> </p>
+                                                  </div>
+                                                </div>
+                                            <% }%>
+                                        <% } %>
+                                        
+
+                                    </div>
+
+                                    <!-- Typing area -->
+                                    <form action="/messages" method="POST" class="bg-light">
+                                        <div class="input-group">
+                                            <input type="text" placeholder="Type a message" name="content" aria-describedby="button-addon2" class="form-control rounded-0 border-0 py-4 bg-light ml-3">
+                                            <div class="input-group-append">
+                                                <button id="button-addon2" type="submit" class="btn btn-link"> <i
+                                                        class="fa fa-paper-plane"></i></button>
+                                            </div>
+                                        </div>
+                                    </form>
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+
+            <%- include('partials/dashFoot.ejs') %> 
+
+</body>
+
+</html>

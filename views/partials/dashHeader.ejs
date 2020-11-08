@@ -1,0 +1,89 @@
+<div id="border" >
+    <div class="user-board-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-2  hidden-sm ">
+                    <div class="logo hidden-xs">
+                        <a href="/home"><img src="/images/uploads/<%= settings.logo %>" alt=""></a>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-7  hidden-xs">
+                    <div class="user-menu">
+                        <div>
+                            <ul id="nav">
+                                <li><a href="/about">ABOUT US</a>
+                                </li>
+                                <li><a href="/blog">BLOG</a>
+                                </li>
+                                <li><a href="#">HELP & SUPPORT </a>
+    
+                                    <li><a href="/contact">CONTACT US</a>
+                                    </li>
+                                    <li><a href="#">ENGLISH</a>
+                                    </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!-- Userboard Start Here -->
+                <div class="col-md-4 col-sm-5 col-xs-12 no-padding">
+                  <div class="userboard">
+                      <ul class="board-item">
+                          <li class="price-cart mr-3"><a href="/cart"><i class="fa fa-shopping-cart"></i></a>
+                          </li>
+                          <!-- <li><a href="my-account.html"><i class="fa fa-user-plus"></i>Create an Account</a></li> -->
+                          <% if(isAuth == true) {%> 
+                          <li><a href="/messages"><h4>Messages</h4></a></li>    
+                          <li><a href="/bookmarks"><h4>Saved</h4></a></li>    
+                          <li><a href="/orders"><h4>Orders</h4></a></li>   
+                          <!-- <li><a href="/logout"><h4>logout</h4></a></li>     -->
+                          <li>
+                              <a href="/dashboard" >
+                              <figure class="avatar" >
+                               <span ><%= username.substring(0,1).toUpperCase()  %></span>  
+                             </figure>
+                              </a>
+                          </li>
+                          <% }else{ %> 
+                            <li><a href="/register"><i class="fa fa-user-plus"></i>Create an Account</a></li>
+                            <li><button class="btn-filled" type="button" data-toggle="modal" data-target="#storola-modal"><i class="fa fa-user"></i>login</button></li>
+                            <!-- Modal -->
+                            <div class="modal fade" id="storola-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <div class="modal-logo">
+                                                <a href="#"><img src="/images/logo1.png" alt=""></a>
+                                            </div>
+                                        </div>
+                                        <div class="modal-body">
+                                            <h2>Great You are Here</h2>
+                                            <form action="/login" method="POST">
+                                                <div class="form-group">
+                                                    <label>Email</label>
+                                                    <input type="text" name="email" autocomplete="off" required>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Password</label>
+                                                    <input type="password" name="password" autocomplete="off" required>
+                                                </div>
+                                                <div class="form-group">
+                                                    <button class="btn-filled" type="submit" value="Submit">log in</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+    
+                          <% } %> 
+    
+                      </ul>
+                  </div>
+              </div>
+    
+            </div>
+        </div>
+        </div>
+    
+</div>

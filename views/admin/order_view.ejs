@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<%- include('../admin-partials/head.ejs')  %> 
+		<!-- froala Editor Stylesheets -->
+    <body class="sb-nav-fixed">
+		<%- include('../admin-partials/topbar.ejs') %> 
+        <div id="layoutSidenav">
+			<%- include('../admin-partials/menu.ejs') %> 
+            <div id="layoutSidenav_content">
+                <main>
+                    <div class="container-fluid">
+                        <h2 class="mt-30 page-title">Orders</h2>
+                        <ol class="breadcrumb mb-30">
+                            <li class="breadcrumb-item"><a href="/admin/dashboard">Dashboard</a></li>
+                            <li class="breadcrumb-item"><a href="/admin/orders">Orders</a></li>
+                            <li class="breadcrumb-item active">Order View</li>
+                        </ol>
+                        <div class="row">
+							<div class="col-lg-6 col-md-6">
+								<div class="card card-static-2 mb-30">
+									<div class="card-body-table">
+										<div class="shopowner-content-left text-center pd-20">
+
+											<div class="shopowner-dt-left mt-4">
+												<h4><%= order.items[item].productId.title %></h4>
+											</div>
+
+											<div class="shopowner-dts">
+												<div class="shopowner-dt-list">
+													<span class="left-dt">Total Amount</span>
+													<span class="right-dt">
+														<% if(order.items[item].plan == "basic") {%>
+															<% if(settings.currency == 'IND') {%> 
+																<span> <i class="fa fa-rupee"></i><%= order.items[item].productId.basicPrice*order.items[item].qty %> </span>
+															 <% }else{ %>
+																 <span><i class="fa fa-dollar"></i><%= order.items[item].productId.basicPrice*order.items[item].qty %> </span>
+															 <% } %> 
+														<% }else if(order.items[item].plan == "standard"){ %>
+															<% if(settings.currency == 'IND') {%> 
+																<span> <i class="fa fa-rupee"></i><%= order.items[item].productId.standardPrice*order.items[item].qty %></span>
+															 <% }else{ %>
+																 <span><i class="fa fa-dollar"></i><%= order.items[item].productId.standardPrice*order.items[item].qty %></span>
+															 <% } %>  
+														<%  }else if(order.items[item].plan == "premium"){ %>
+															<% if(settings.currency == 'IND') {%> 
+																<span> <i class="fa fa-rupee"></i><%= order.items[item].productId.premiumPrice*order.items[item].qty %> </span>
+															 <% }else{ %>
+																 <span><i class="fa fa-dollar"></i><%= order.items[item].productId.premiumPrice*order.items[item].qty %> </span>
+															 <% } %> 
+														<% } %> 
+													</span>
+												</div>
+												<div class="shopowner-dt-list">
+													<span class="left-dt">Quantity</span>
+													<span class="right-dt"><%= order.items[item].qty %></span>
+												</div>
+												<div class="shopowner-dt-list">
+													<span class="left-dt">User</span>
+													<span class="right-dt"><%= order.userId.username %></span>
+												</div>
+												<div class="shopowner-dt-list">
+													<span class="left-dt">User Email</span>
+													<span class="right-dt"><%= order.userId.email %></span>
+												</div>
+												<div class="shopowner-dt-list">
+													<span class="left-dt">Plan</span>
+													<span class="right-dt"><%= order.items[item].plan.toUpperCase()  %></span>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<div class="col-lg-6 col-md-6">
+								<div class="card card-static-2 mb-30">
+									<div class="card-body-table">
+										<div class="shopowner-content-left text-center pd-20">
+											<div class="shopowner-dt-left mt-4">
+												<h4>Product Images</h4>
+											</div>
+											<% for(var i=0;i<=order.items[item].productId.images.length-1;i++) {%> 
+												<div class="m-4">
+													<img src="/images/uploads/<%= order.items[item].productId.images[i] %>" style="width: 300px; height: 150px;" class="img-fluid" alt="">
+												</div>
+											<% } %> 
+										</div>
+									</div>
+								</div>
+							</div>
+                        </div>
+                    </div>
+                </main>
+                
+            </div>
+        </div>
+        <script src="/js/jquery-3.4.1.min.js"></script>
+        <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <script src="/js/scripts.js"></script>
+       
+    </body>
+
+<!-- Mirrored from gambolthemes.net/html-items/gambo_admin/order_view.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 05 Jun 2020 23:09:42 GMT -->
+</html>

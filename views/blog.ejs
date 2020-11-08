@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include('partials/categoryHead.ejs')  %> 
+
+<body>
+    <!-- HEADER START HERE -->
+    <%- include('partials/header.ejs')  %> 
+    <!-- HEADER END HERE -->
+    
+    <!-- ABOUT PROMO START HERE -->
+    <div class="promo-area" style="background-image: url(images/banner/inner-top.jpg)">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="promo-text">
+                        <h2>blog page</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ABOUT PROMO END HERE -->
+
+    <!-- BREADCRUMB START HERE -->
+    <div class="about-breadcrumb">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="#">Home</a>
+                        </li>
+                        <li class="breadcrumb-item active">Blog page</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- BREADCRUMB END HERE -->
+
+    <!-- BLOG PAGE START HERE -->
+    <main class="blog-page main-content">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-sm-12">
+                    <!-- CONTENT AREA START HERE -->
+                    <div class="content-area">
+                    <% for(var i=0;i<=posts.length-1;i++) {%> 
+                        <!-- SINGLE POST ITEM -->
+                        <div class="s-blog-item">
+                            <div class="blog-thumb">
+                                <a href="/blog/<%= posts[i].id %>" class=" overly-bg"><img src="/images/uploads/<%= posts[i].cover %>" alt="">
+                                </a>
+                            </div>
+                            <!-- Blog Details -->
+                            <div class="s-blog-details">
+                                <h3 class="blog-headline">
+                                   <a href="/blog/<%= posts[i].id %>"><%= posts[i].title %></a>
+                               </h3>
+                                <div class="blog-meta">
+                                    <span><i class="fa fa-user"></i><a href="#"><%= posts[i].author %></a></span>
+                                    <span><i class="fa fa-clock-o"></i><a href="#"><%= posts[i].createdAt.toString().substring(0,15) %></a></span>
+                                    <span><%= posts[i].tags %></span>
+                                </div>
+                                <p>
+                                    <% if(posts[i].content.length > 200) {%>
+                                        <%= posts[i].content.substring(0,200) + '...' %> 
+                                    <% }else{ %>
+                                        <%= posts[i].content %> 
+                                    <% } %>
+                                </p>
+                                <div class="post-button-social">
+                                    <a href="/blog/<%= posts[i].id %>" class="custom-btn pull-left">read more</a>
+                                    <div class="post-social pull-right">
+                                        <ul>
+                                            <!-- <li><a href="#"><i class="fa fa-heart"></i> 37</a>
+                                            </li> -->
+                                            <li><a href="#"><i class="fa fa-comment-o"></i><%= posts[i].comments.length %></a>
+                                            </li>
+                                            <!-- <li><a href="#"><i class="fa fa-share-alt"></i> 37</a>
+                                            </li> -->
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- SINGLE BLOT ITEM END -->
+                    <% } %> 
+                        <!-- <div class="pager">
+                            <a href="#" class="next-btn"> <i class="fa fa-angle-left"></i>
+                            </a>
+                            <span>1</span>
+                            <a href="#">2</a>
+                            <a href="#">3</a>
+                            <a href="#">4</a>
+                            <a href="#">5</a>
+                            <a href="#" class="next-btn"> <i class="fa fa-angle-right"></i>
+                            </a>
+                        </div> -->
+                        <!-- PAGER  END HERE -->
+                    </div>
+                    <!-- CONTENT AREA END HERE -->
+                </div>
+                <div class="col-md-4 col-sm-12">
+                    <!-- SIDEBAR AREA START HERE -->
+                    <aside class="sidebar">
+                        <div class="sidebar-widget">
+                            <form action="#" class="search-box">
+                                <input type="text" placeholder="Searching kyeword here">
+                                <button type="search"><i class="fa fa-search"></i>
+                                </button>
+                            </form>
+                        </div>
+                        <!-- Search Widget End -->
+                        <div class="sidebar-widget">
+                            <h3 class="widget-title">categories</h3>
+                            <ul>
+                            <% for(var i=0;i<=categories.length-1;i++) {%> 
+                                <li><a href="#"><%= categories[i].category %></a>
+                                </li>
+                            <% } %> 
+                            </ul>
+                        </div>
+                        <!-- Categories Widget End -->
+
+                        <div class="sidebar-widget">
+                            <h3 class="widget-title">Popular Post</h3>
+                            <div class="popular-post">
+                                <% for(var i=0;i<=posts.length-1;i++) {%> 
+                                    <% if(posts[i].popular == true) {%> 
+                                        <div class="single-popular">
+                                            <a href="/blog/<%= posts[i].id %>"><img src="/images/uploads/<%= posts[i].cover %>" alt="">
+                                            </a>
+                                            <div class="pp-details">
+                                                <h4><a href="/blog/<%= posts[i].id %>"><%= posts[i].title %></a></h4>
+                                                <span><i class="fa fa-comment-o"></i><%= posts[i].comments.length %></span>
+                                            </div>
+                                        </div>
+                                    <% } %> 
+                                <% } %> 
+                            </div>
+                        </div>
+                        <!-- Popular Post Widget End -->
+
+                        <div class="sidebar-widget">
+                            <h3 class="widget-title">Follow us</h3>
+                            <div class="follow-us">
+                                <div class="single-follow">
+                                    <div class="follow-icon">
+                                        <span><i class="fa fa-facebook"></i></span>
+                                        <h4>256065 <span>likes</span></h4>
+                                    </div>
+                                    <button class="follow-btn fb">like</button>
+                                </div>
+                                <div class="single-follow">
+                                    <div class="follow-icon">
+                                        <span><i class="fa fa-twitter"></i></span>
+                                        <h4>24355 <span>followers</span></h4>
+                                    </div>
+                                    <button class="follow-btn tw">follow</button>
+                                </div>
+                                <div class="single-follow">
+                                    <div class="follow-icon">
+                                        <span><i class="fa fa-youtube-play"></i></span>
+                                        <h4>6065 <span>subscribers</span></h4>
+                                    </div>
+                                    <button class="follow-btn yt">subscribe</button>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Follow Us Widget End -->
+                        <div class="sidebar-widget">
+                            <h3 class="widget-title">tags</h3>
+                            <div class="tagclouds">
+                                <% for(var i=0;i<=tags.length-1;i++) {%> 
+                                    <a href="#"><%= tags[i].tag %></a>
+                                <% } %> 
+                            </div>
+                        </div>
+                        <!-- Tag Widget End -->
+                    </aside>
+                    <!-- SIDEBAR AREA END HERE -->
+                </div>
+            </div>
+        </div>
+    </main>
+    <!-- BLOG PAGE END HERE -->
+
+
+    <%- include('partials/footer.ejs') %> 
+    <%- include('partials/foot.ejs') %> 
+
+</body>
+
+
+<!-- Mirrored from web.dotthemes.com/html/storola-demo/storola/blog.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 02 May 2020 16:10:58 GMT -->
+</html>

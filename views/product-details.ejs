@@ -1,0 +1,932 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include('partials/head.ejs')  %> 
+
+<body>
+    <!-- HEADER START HERE -->
+    <%- include('partials/header.ejs')  %> 
+    <div class="about-breadcrumb">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="#"><%= product.category %></a>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- BREADCRUMB END HERE -->
+
+    <!-- PRODUCT DETAILS AREA START HERE -->
+        <main class="product-details">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-sm-12">
+                    <!-- SINGLE PRODUCT START -->
+                    <div class="single-product">
+                        <div class="s-product-thumb">
+                            <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                                <!-- <ol class="carousel-indicators">
+                                  <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                                  <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                                  <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                                </ol> -->
+                                <div class="carousel-inner">
+                                <%var active=true; for(var i=0 ;i<=product.images.length-1 ; i++) { %> 
+                                <div class="carousel-item <% if(active){ active=false;%>active<% } %>">
+                                    <img class="d-block w-100" src="/images/uploads/<%= product.images[i] %>" alt="Images">
+                                </div>
+                                <% } %> 
+                                </div>
+                                <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                  <span class="sr-only">Previous</span>
+                                </a>
+                                <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                  <span class="sr-only">Next</span>
+                                </a>
+                            </div>
+                            <h3 class="product-title"><%= product.title %></h3>
+                        </div>
+                        <div class="demo-social">
+                            <div class="p-demo-btn">
+                                <button href="" id="screenshot" class="custom-btn">Screenshots <i class="fa fa-eye"></i></button>
+                            </div>
+                            <div class="p-demo-social">
+                                <ul>
+                                    <li><a href="https://www.facebook.com/sharer/sharer.php?u=example.org" target="_blank"> <img src="/assets/icons/svg/004-facebook.svg" alt=""></a>
+                                    </li>
+                                    <li><a href="https://twitter.com/share?ref_src=twsrc%5Etfw" data-show-count="false">  <img src="/assets/icons/svg/001-twitter.svg" alt=""> </a>
+                                    </li>
+
+                                    <li class="blue"><a href="/products/favorites/<%= product.id %>"> <i class="fa fa-heart"></i><%= product.favorites %></a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+            
+                        <!-- S-product Tab Start -->
+                        <div class="s-product-tab">
+                            <!-- Nav tabs -->
+                            <!-- <ul class="nav nav-tabs" role="tablist">
+                                <li role="presentation" class="active"><a href="#i-details" aria-controls="i-details" role="tab" data-toggle="tab">Item Details</a>
+                                </li>
+                            </ul> -->
+                            <div class="header-title m-3">
+                                <h3 class="font-25 " style="color: black;">Item Details</h3>
+                            </div>
+                            
+
+                            <!-- Tab panes -->
+                            <div class="tab-content">
+                                <div role="tabpanel" class=" tab-pane fade-in active" id="i-details">
+                                    <div class="col item-detail-tab">
+                                        <div class="row">
+                                            <p>
+                                            <% for(var i=0; i<= product.description.length ; i++) {%><%=product.description[i]%><% if(i!=0 && i%50 == 0) { %></p><% } %><% } %>  </p>
+                                        </div>
+                                    </div>
+                                </div>
+                               
+                            </div>
+                        </div>
+                        <!-- PRODUCT TAB END -->
+                        <div class="col-12">
+                            <div class="card m-b-30">
+                                <div class="card-body">
+                                    <div class="header-title">
+                                        <h3 class="font-25 " style="color: black;"> Compare Packages</h3>
+                                    </div>
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered mb-0 text-center">
+                                            <thead class="table-bordered">
+
+                                                <tr>
+                                                    <th scope="row" class="col-3">
+                                                        <h3 class=" mt-0">Package</h3>
+                                                    </th>
+                                                    <th class="font-15 col-3">
+                                                        <% if(settings.currency == 'IND'){ %> 
+                                                            <h3 class="mb-0" style="color: #533396;"><i class="fa fa-rupee" style="color: #533396;"></i> <%= product.basicPrice %> </h3>
+                                                        <% }else{ %>
+                                                            <h3 class="mb-0" style="color: #533396;"><i class="fa fa-dollar" style="color: #533396;"></i> <%= product.basicPrice %> </h3>
+                                                        <% } %> 
+                                                        <br>
+                                                        <h3>Basic</h3>
+                                                    </th>
+                                                    <th class="font-15 col-3">
+                                                        <% if(settings.currency == 'IND'){ %> 
+                                                            <h3 class="mb-0" style="color: #533396;"><i class="fa fa-rupee" style="color: #533396;"></i> <%= product.standardPrice %> </h3>
+                                                        <% }else{ %>
+                                                            <h3 class="mb-0" style="color: #533396;"><i class="fa fa-dollar" style="color: #533396;"></i> <%= product.standardPrice %> </h3>
+                                                        <% } %> 
+
+                                                        <br>
+                                                        <h3>Standard</h3>
+                                                    </th>
+                                                    <th class="font-15 col-3">
+                                                        <% if(settings.currency == 'IND'){ %> 
+                                                            <h3 class="mb-0" style="color: #533396;"><i class="fa fa-rupee" style="color: #533396;"></i> <%= product.premiumPrice %> </h3>
+                                                        <% }else{ %>
+                                                            <h3 class="mb-0" style="color: #533396;"><i class="fa fa-dollar" style="color: #533396;"></i> <%= product.premiumPrice %> </h3>
+                                                        <% } %> 
+                                                        <br>
+                                                        <h3>Premium</h3>
+                                                        
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <th scope="row" >
+                                                        <h3>Description</h3>
+                                                    </th>
+                                                    <td>
+                                                        <h4><%= product.basicDescription %></h4>
+                                                    </td>
+                                                    <td>
+                                                        <h4><%= product.standardDescription %></h4>
+                                                    </td>
+                                                    <td>
+                                                        <h4><%= product.premiumDescription %> </h4>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">
+                                                        <h3>Source File</h3>
+                                                    </th>
+                                                    <td>
+                                                        <% if(product.basicSource == "on") { %> 
+                                                        <span class="material-icons" style="color: #533396;">
+                                                        done
+                                                        </span> 
+                                                        <% }else{ %>
+                                                            <span class="material-icons text-muted" style="color: #533396;">
+                                                                done
+                                                            </span>   
+                                                        <% } %> 
+                                                    </td>
+                                                        <td>
+                                                            <% if(product.standardSource == "on") { %> 
+                                                                <span class="material-icons" style="color: #533396;">
+                                                                done
+                                                                </span> 
+                                                                <% }else{ %>
+                                                                    <span class="material-icons text-muted" style="color: #533396;">
+                                                                        done
+                                                                    </span>   
+                                                            <% } %> 
+                                                        </td>
+                                                        <td>
+                                                            <% if(product.premiumSource == "on") { %> 
+                                                                <span class="material-icons" style="color: #533396;">
+                                                                done
+                                                                </span> 
+                                                                <% }else{ %>
+                                                                    <span class="material-icons text-muted" style="color: #533396;">
+                                                                        done
+                                                                    </span>   
+                                                            <% } %>
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                    <tr>
+                                                        <th scope="row">
+                                                            <h3>Logo Transparency</h3>
+                                                        </th>
+                                                        <td>
+                                                            <% if(product.basicLogo == "on") { %> 
+                                                            <span class="material-icons" style="color: #533396;">
+                                                            done
+                                                            </span> 
+                                                            <% }else{ %>
+                                                                <span class="material-icons text-muted" style="color: #533396;">
+                                                                    done
+                                                                </span>   
+                                                            <% } %> 
+                                                        </td>
+                                                            <td>
+                                                                <% if(product.standardLogo == "on") { %> 
+                                                                    <span class="material-icons" style="color: #533396;">
+                                                                    done
+                                                                    </span> 
+                                                                    <% }else{ %>
+                                                                        <span class="material-icons text-muted" style="color: #533396;">
+                                                                            done
+                                                                        </span>   
+                                                                <% } %> 
+                                                            </td>
+                                                            <td>
+                                                                <% if(product.premiumLogo == "on") { %> 
+                                                                    <span class="material-icons" style="color: #533396;">
+                                                                    done
+                                                                    </span> 
+                                                                    <% }else{ %>
+                                                                        <span class="material-icons text-muted" style="color: #533396;">
+                                                                            done
+                                                                        </span>   
+                                                                <% } %>
+                                                            </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th scope="row">
+                                                            <h3>High Resolutions</h3>
+                                                        </th>
+                                                        <td>
+                                                            <% if(product.basicResolutions == "on") { %> 
+                                                            <span class="material-icons" style="color: #533396;">
+                                                            done
+                                                            </span> 
+                                                            <% }else{ %>
+                                                                <span class="material-icons text-muted" style="color: #533396;">
+                                                                    done
+                                                                </span>   
+                                                            <% } %> 
+                                                        </td>
+                                                            <td>
+                                                                <% if(product.standardResolutions == "on") { %> 
+                                                                    <span class="material-icons">
+                                                                    done
+                                                                    </span> 
+                                                                    <% }else{ %>
+                                                                        <span class="material-icons text-muted" style="color: #533396;">
+                                                                            done
+                                                                        </span>   
+                                                                <% } %> 
+                                                            </td>
+                                                            <td>
+                                                                <% if(product.premiumResolutions == "on") { %> 
+                                                                    <span class="material-icons" style="color: #533396;">
+                                                                    done
+                                                                    </span> 
+                                                                    <% }else{ %>
+                                                                        <span class="material-icons text-muted" style="color: #533396;">
+                                                                            done
+                                                                        </span>   
+                                                                <% } %>
+                                                            </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th scope="row">
+                                                            <h3>3D Mockup</h3>
+                                                        </th>
+                                                        <td>
+                                                            <% if(product.basicMockup == "on") { %> 
+                                                            <span class="material-icons" style="color: #533396;">
+                                                            done
+                                                            </span> 
+                                                            <% }else{ %>
+                                                                <span class="material-icons text-muted" style="color: #533396;">
+                                                                    done
+                                                                </span>   
+                                                            <% } %> 
+                                                        </td>
+                                                            <td>
+                                                                <% if(product.standardMockup == "on") { %> 
+                                                                    <span class="material-icons" style="color: #533396;">
+                                                                    done
+                                                                    </span> 
+                                                                    <% }else{ %>
+                                                                        <span class="material-icons text-muted" style="color: #533396;">
+                                                                            done
+                                                                        </span>   
+                                                                <% } %> 
+                                                            </td>
+                                                            <td>
+                                                                <% if(product.premiumMockup == "on") { %> 
+                                                                    <span class="material-icons" style="color: #533396;">
+                                                                    done
+                                                                    </span> 
+                                                                    <% }else{ %>
+                                                                        <span class="material-icons text-muted" style="color: #533396;">
+                                                                            done
+                                                                        </span>   
+                                                                <% } %>
+                                                            </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th scope="row">
+                                                            <h3>Stationary Designs</h3>
+                                                        </th>
+                                                        <td>
+                                                            <% if(product.basicDesigns == "on") { %> 
+                                                            <span class="material-icons" style="color: #533396;">
+                                                            done
+                                                            </span> 
+                                                            <% }else{ %>
+                                                                <span class="material-icons text-muted" style="color: #533396;">
+                                                                    done
+                                                                </span>   
+                                                            <% } %> 
+                                                        </td>
+                                                            <td>
+                                                                <% if(product.standardDesigns == "on") { %> 
+                                                                    <span class="material-icons" style="color: #533396;">
+                                                                    done
+                                                                    </span> 
+                                                                    <% }else{ %>
+                                                                        <span class="material-icons text-muted" style="color: #533396;">
+                                                                            done
+                                                                        </span>   
+                                                                <% } %> 
+                                                            </td>
+                                                            <td>
+                                                                <% if(product.premiumDesigns == "on") { %> 
+                                                                    <span class="material-icons" style="color: #533396;">
+                                                                    done
+                                                                    </span> 
+                                                                    <% }else{ %>
+                                                                        <span class="material-icons text-muted" style="color: #533396;">
+                                                                            done
+                                                                        </span>   
+                                                                <% } %>
+                                                            </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th scope="row">
+                                                            <h3>Total</h3>
+                                                        </th>
+                                                        <td>
+                                                            <% if(settings.currency == 'IND'){ %> 
+                                                                <h4 class="mb-0"><i class="fa fa-rupee" style="color: #533396;"></i> <%= product.basicPrice %> </h4>
+                                                            <% }else{ %>
+                                                                <h4 class="mb-0"><i class="fa fa-dollar" style="color: #533396;"></i> <%= product.basicPrice %> </h4>
+                                                            <% } %>
+                                                        <br>
+                                                          <a href="/cart/add/<%= product.id %>/?plan=basic"><button type="submit"  class="btn btn-primary btn-lg btn-block waves-effect waves-light" style="background-color: #533396;">Submit</button></a>
+
+                                                        </td>
+                                                        <td>
+                                                        <% if(settings.currency == 'IND'){ %> 
+                                                            <h3 class="mb-0"><i class="fa fa-rupee" style="color: #533396;"></i> <%= product.standardPrice %> </h4>
+                                                        <% }else{ %>
+                                                            <h3 class="mb-0"><i class="fa fa-dollar" style="color: #533396;"></i> <%= product.standardPrice %> </h4>
+                                                        <% } %>
+                                                        <br>
+                                                        <a href="/cart/add/<%= product.id %>/?plan=standard"><button type="submit"  class="btn btn-primary btn-lg btn-block waves-effect waves-light" style="background-color: #533396;">Submit</button></a>
+                                                          
+                                                           
+
+                                                        </td>
+                                                        <td>
+                                                            <% if(settings.currency == 'IND'){ %> 
+                                                                <h4 class="mb-0"><i class="fa fa-rupee" style="color: #533396;"></i> <%= product.premiumPrice %> </h4>
+                                                            <% }else{ %>
+                                                                <h4 class="mb-0"><i class="fa fa-dollar" style="color: #533396;"></i> <%= product.premiumPrice %> </h4>
+                                                            <% } %>
+                                                            <br>
+                                                            <a href="/cart/add/<%= product.id %>/?plan=premium"><button type="submit"  class="btn btn-primary btn-lg btn-block waves-effect waves-light" style="background-color: #533396;">Submit</button></a>
+                                                          
+                                                               
+                                                        </td>
+                                                    </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-12">
+                            <div class="m-b-0">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <h3 class="font-25" style="color: black;"><%= reviews.length %> Reviews 
+                                            <% for(var i=1;i<=5;i++){ %> 
+                                                <% if(i<=rating.avg){ %> 
+                                                <i class="fa fa-star checked"></i>
+                                                <% }else{ %>
+                                                <i class="fa fa-star"></i>
+                                                <% } %> 
+                                            <% } %>
+
+
+                                        </h3>
+                                        <label class="full" ></label>
+
+                                            <div class="row p-0">
+                                                <div class="col-2.5 m-l-10">
+                                                    <h4 style="color: blue;">5 Stars</h4>
+                                                </div>
+                                                <div class="col-8 m-t-15 ">
+                                                    <div class="progress" style="height: 8px; border-radius: 25px;">
+                                                    <div class="progress-bar bg-warning" role="progressbar" id="5star" aria-valuenow="<%= 5*rating.r5 %>" aria-valuemin="0" aria-valuemax=""></div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-1 p-0">
+                                                    <h4 style="color: blue;">(<%= rating.r5 %>)</h4>
+                                                </div>
+                                            </div>
+                                            <div class="row p-0">
+                                                <div class="col-2.5 m-l-10">
+                                                    <h4 style="color: blue;">4 Stars</h4>
+                                                </div>
+                                                <div class="col-8 m-t-15 ">
+                                                    <div class="progress" style="height: 8px; border-radius: 25px;">
+                                                        <div class="progress-bar bg-warning" role="progressbar" id="4star" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-1 p-0">
+                                                    <h4 style="color: blue;">(<%= rating.r4 %>)</h4>
+                                                </div>
+                                            </div>
+                                            <div class="row p-0">
+                                                <div class="col-2.5 m-l-10">
+                                                    <h4 style="color: blue;">3 Stars</h4>
+                                                </div>
+                                                <div class="col-8 m-t-15 ">
+                                                    <div class="progress" style="height: 8px; border-radius: 25px;">
+                                                        <div class="progress-bar bg-warning" role="progressbar" id="3star" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-1 p-0">
+                                                    <h4 style="color: blue;">(<%= rating.r3 %>)</h4>
+                                                </div>
+                                            </div>
+                                            <div class="row p-0">
+                                                <div class="col-2.5 m-l-10">
+                                                    <h4 style="color: blue;">2 Stars</h4>
+                                                </div>
+                                                <div class="col-8 m-t-15 ">
+                                                    <div class="progress" style="height: 8px; border-radius: 25px;">
+                                                        <div class="progress-bar bg-warning" role="progressbar" id="2star" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-1 p-0">
+                                                    <h4 style="color: blue;">(<%= rating.r2 %>)</h4>
+                                                </div>
+                                            </div>
+                                            <div class="row p-0">
+                                                <div class="col-2.6 m-l-20">
+                                                    <h4 style="color: blue;">1 Star</h4>
+                                                </div>
+                                                <div class="col-8 m-t-15 ">
+                                                    <div class="progress" style="height: 8px; border-radius: 25px;">
+                                                        <div class="progress-bar bg-warning" role="progressbar" id="1star" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-1 p-0">
+                                                    <h4 style="color: blue;">(<%= rating.r1 %>)</h4>
+                                                </div>
+                                            </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <h3 class="font-25" style="color: black;">Sort By</h3>
+                                        <h4 class="m-t-20" style="color:black;">Rating Breakdown</h4>
+                                        <h4 class="m-t-10">Seller Communication Level</h4>
+                                        <h4 class="m-t-10">Recommended to a friend</h4>
+                                        <h4 class="m-t-10">Service as Described</h4>
+
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <hr>
+
+                        <div class="row m-t-20">
+                            <div class="col-md-12">
+                                <% for(var i= 0 ; i<=reviews.length-1;i++){ %> 
+                                <div class="media"> <img src="https://res.cloudinary.com/mhmd/image/upload/v1564960395/avatar_usae7z.svg" alt="user" width="50" class="rounded-circle">
+                                   <!-- review start -->
+                                    <div class="media-body">
+                                        <div class="row">
+                                            <div class="col-8">
+                                                <h5 class="ml-3"><%= reviews[i].username  %><i class="fa fa-star checked font-10"><%= reviews[i].rating %> </i></h5> 
+                                                
+                                            </div>
+                                            <!-- <div class="col-4">
+                                                <div class="pull-right reply"> <a href="#"><span><i class="fa fa-reply"></i> reply</span></a> </div>
+                                            </div> -->
+                                        </div>
+                                        <div class="m-3">
+                                            <%= reviews[i].comment %> 
+                                        </div>         
+                                        <div>
+                                            <span></span>
+                                        </div>
+                                    </div>
+                                    <!-- review end -->
+                                </div>
+                                <hr>
+                            <% } %> 
+                                
+                                <form autocomplete="off" action="/products/reviews/<%= product.id %>" method="POST" class="bg-light">
+                                    <div class="input-group">
+                                      <input type="text" placeholder="Type a message" name="comment" aria-describedby="button-addon2" class="form-control rounded-0 border-0 py-4 bg-light">
+                                      <fieldset class="rating">
+                                        <input type="radio" id="star5" name="rating" value="5" /><label class = "full" for="star5" title="Awesome - 5 stars"></label>
+                                        <input type="radio" id="star4" name="rating" value="4" /><label class = "full" for="star4" title="Pretty good - 4 stars"></label>
+                                        <input type="radio" id="star3" name="rating" value="3" /><label class = "full" for="star3" title="Meh - 3 stars"></label>
+                                        <input type="radio" id="star2" name="rating" value="2" /><label class = "full" for="star2" title="Kinda bad - 2 stars"></label>
+                                        <input type="radio" id="star1" name="rating" value="1" /><label class = "full" for="star1" title="Sucks big time - 1 star"></label>
+                                    </fieldset>
+                                      <div class="input-group-append">
+                                        <button id="button-addon2" type="submit" class="btn btn-link"> <i class="fa fa-paper-plane"></i></button>
+                                      </div>
+                                    </div>
+                                </form>
+                            </div>
+                            
+                        </div>
+
+                                
+
+
+                    </div>
+                    <!-- SINGLE PRODUCT END -->
+                </div>
+                <div class=" col-md-4 col-sm-12">
+                    <aside class="product-sidebar">
+                        <div class="col-12">
+                            <div class="card m-b-30">
+                                <div class="card-body">
+
+                                    <!-- Nav tabs -->
+                                    <ul class="nav nav-pills nav-justified" role="tablist">
+                                        <li class="nav-item waves-effect waves-light">
+                                            <a class="nav-link active"data-toggle="tab" href="#basic-1" role="tab">
+                                                <span class="d-none d-md-block">Basic</span><span class="d-block d-md-none"><i class="mdi mdi-account h5"></i></span>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item waves-effect waves-light">
+                                            <a class="nav-link" data-toggle="tab" href="#standard-1" role="tab">
+                                                <span class="d-none d-md-block">Standard</span><span class="d-block d-md-none"><i class="mdi mdi-email h5"></i></span>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item waves-effect waves-light">
+                                            <a class="nav-link" data-toggle="tab" href="#premium-1" role="tab">
+                                                <span class="d-none d-md-block">Premium</span><span class="d-block d-md-none"><i class="mdi mdi-settings h5"></i></span>
+                                            </a>
+                                        </li>
+                                    </ul>
+    
+                                    <!-- Tab panes -->
+                                    <div class="tab-content">
+                                        <div class="tab-pane active p-3" id="basic-1" role="tabpanel">
+                                            <div class="row">
+                                                <div class="col-8">
+                                                    <h3>Basic</h3>
+                                                </div>
+                                                <div class="col-4" style="color: #533396;">
+                                                    <% if(settings.currency == 'IND'){ %> 
+                                                     <h3 style="color: #533396;"><i class="fa fa-rupee"></i> <%= product.basicPrice %> </h3>
+                                                    <% }else{ %>
+                                                     <h3 style="color: #533396;"><i class="fa fa-dollar"></i> <%= product.basicPrice %> </h3>
+                                                    <% } %> 
+                                                </div>
+
+                                            </div>
+                                            <br>
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <h4><span class="material-icons">more_time</span> <%= product.basicDeliveryTime %></h4>
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <div class="row">
+                                                <p class="ml-3">
+                                                    <%= product.basicDescription %> 
+                                                </p>
+                                            </div>
+                                            
+                                            <a href="/cart/add/<%= product.id %>/?plan=basic"><button type="button" class="btn btn-primary btn-lg btn-block waves-effect waves-light" style="background-color: #533396;">Continue</button></a>
+
+                                        </div>
+                                        <div class="tab-pane p-3" id="standard-1" role="tabpanel">
+                                            <div class="row">
+                                                <div class="col-8">
+                                                    <h3>Standard</h3>
+                                                </div>
+                                                <div class="col-4" style="color: #533396;">
+                                                    <% if(settings.currency == 'IND'){ %> 
+                                                     <h3 style="color: #533396;"><i class="fa fa-rupee"></i> <%= product.standardPrice %> </h3>
+                                                    <% }else{ %>
+                                                     <h3 style="color: #533396;"><i class="fa fa-dollar"></i> <%= product.standardPrice %> </h3>
+                                                    <% } %> 
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <h4><span class="material-icons">more_time</span> <%= product.standardDeliveryTime %></h4>
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <div class="row">
+                                                <p class="ml-3">
+                                                    <%= product.standardDescription %> 
+                                                </p>
+                                            </div>
+                                            <a href="/cart/add/<%= product.id %>/?plan=standard"><button type="button" class="btn btn-primary btn-lg btn-block waves-effect waves-light" style="background-color: #533396;">Continue</button></a>
+
+                                        </div>
+                                        <div class="tab-pane p-3" id="premium-1" role="tabpanel">
+                                            <div class="row">
+                                                <div class="col-8">
+                                                    <h3>Premium</h3>
+                                                </div>
+                                                <div class="col-4" style="color: #533396;">
+                                                    <% if(settings.currency == 'IND'){ %> 
+                                                     <h3 style="color: #533396;"><i class="fa fa-rupee"></i> <%= product.premiumPrice %> </h3>
+                                                    <% }else{ %>
+                                                     <h3 style="color: #533396;"><i class="fa fa-dollar"></i> <%= product.premiumPrice %> </h3>
+                                                    <% } %> 
+                                                </div>    
+
+                                            </div>
+                                            <br>
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <h4><span class="material-icons">more_time</span> <%= product.premiumDeliveryTime %></h4>
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <div class="row">
+                                                <p class="ml-3">
+                                                    <%= product.premiumDescription %> 
+                                                </p>
+                                            </div>
+                                            <a href="/cart/add/<%= product.id %>/?plan=premium"><button type="button" class="btn btn-primary btn-lg btn-block waves-effect waves-light" style="background-color: #533396;">Continue</button></a>
+
+                                        </div>
+                                    </div>
+    
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-widget">
+                            <div class="pay-method">
+                                <img src="/images/p-method.png" alt="">
+                            </div>
+                        </div>
+
+                        <div class="col-12">
+                            <div class="card m-b-30">
+                                <div class="card-body">
+
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </aside>
+                </div>
+            </div>
+        </div>
+        </main>
+    <!-- PRODUCT DETAILS AREA END HERE -->
+
+    <!-- RELATED PRODUCT START -->
+    <div class="related-product">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="related-p-heading">
+                        <h3>Related Products</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="related-wrap owl-carousel">
+                <% for(var i=products.length-1; i>=0; i--) {%> 
+                <!-- Single Product Start -->
+                <div class="item-demo">
+                    <figure>
+                        <div id="product<%= products[i].id %>" class="carousel slide" data-ride="carousel">
+                            <div class="carousel-inner">
+                            <% for(var j=0 ;j<=products[i].images.length-1 ; j++) { %> 
+                            <div class="carousel-item <% if(j==0) { %> active<% }%>">
+                                <img class="d-block w-100" src="/images/uploads/<%= products[i].images[j] %>" alt="Images">
+                            </div>
+                            <% } %> 
+                            </div>
+                            <a class="carousel-control-prev" href="#product<%= products[i].id  %>" role="button" data-slide="prev">
+                              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                              <span class="sr-only">Previous</span>
+                            </a>
+                            <a class="carousel-control-next" href="#product<%= products[i].id %>" role="button" data-slide="next">
+                              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                              <span class="sr-only">Next</span>
+                            </a>
+                        </div>
+                        <div class="product-caption">
+                            <div class="caption-cel">
+                                <div class="product-link">
+                                    <div>
+                                        <div>
+                                            <a href="/products/details/<%= products[i].id %>">View Details <span><i class="fa fa-eye"></i></span></a>
+                                        </div>
+                                        <div>
+                                            <a href="/cart/add/<%= products[i].id %>/?plan=basic">Add to Cart<span><i class="fa fa-shopping-cart"></i></span></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </figure>
+                    <div class="product-info">
+                        <div class="product-header">
+                            <h3 class="product-name"><a href="/products/details/<%= products[i].id %>"><%= products[i].title %> </a> 
+                                <% if(settings.currency == 'IND') {%> 
+                                    <span> <i class="fa fa-rupee" style="color:#533396"></i> <%= products[i].basicPrice %> </span>
+                                 <% }else{ %>
+                                     <span><i class="fa fa-dollar" style="color:#533396"></i><%= products[i].basicPrice %> </span>
+                                 <% } %>
+                            </h3>
+                            <!-- <span class="p-author">
+                                <a href="#">@admin</a>
+                            </span> -->
+                        </div>
+                        <div class="product-meta">
+                            <span class="meta-download">
+                                <i class="fa fa-cloud"></i><%= products[i].orders %> 
+                            </span>
+                            <span class="meta-love">
+                                <i class="fa fa-heart"></i><%= products[i].favorites %> 
+                            </span>
+                            <span class="float-right">
+                                <% for(var k=1;k<=5;k++){ %> 
+                                    <% if(k<=products[i].rating){ %> 
+                                    <i class="fa fa-star checked"></i>
+                                    <% }else{ %>
+                                    <i class="fa fa-star"></i>
+                                    <% } %> 
+                                <% } %>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Single Product End -->
+            <% } %> 
+
+            </div>
+        </div>
+    </div>
+    <!-- RELATED PRODUCT END -->
+
+    <!-- FOOTER AREA START HERE -->
+    <footer class="footer-area">
+        <div class="footer-top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-2 col-sm-4">
+                        <div class="footer-widget">
+                            <h3 class="footer-title">our product</h3>
+                            <ul class="product-list">
+                                <li><a href="#">Freebee</a>
+                                </li>
+                                <li><a href="#">PSD Template</a>
+                                </li>
+                                <li><a href="#">HTML Template</a>
+                                </li>
+                                <li><a href="#">Wordpress Template</a>
+                                </li>
+                                <li><a href="#">Others Graphic</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-2 col-sm-4">
+                        <div class="footer-widget support-pd">
+                            <h3 class="footer-title">support</h3>
+                            <ul class="our-support">
+                                <li><a href="#">General Support</a>
+                                </li>
+                                <li><a href="#">Community Forum </a>
+                                </li>
+                                <li><a href="#">Licenses </a>
+                                </li>
+                                <li><a href="#">Terms & Conditions </a>
+                                </li>
+                                <li><a href="#">Privacy Policy </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-2 col-md-offset-1 col-sm-4">
+                        <div class="footer-widget">
+                            <h3 class="footer-title">company</h3>
+                            <ul class="our-company">
+                                <li><a href="about.html">About</a>
+                                </li>
+                                <li><a href="faq.html">Faq Page</a>
+                                </li>
+                                <li><a href="contact.html">Contact Us</a>
+                                </li>
+                                <li><a href="#">Copyright Notice</a>
+                                </li>
+                                <li><a href="#">Refund Policy</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <input type="hidden" id="r5" value="<%= rating.r5 %>" />
+        <input type="hidden" id="r4" value="<%= rating.r4 %>" />
+        <input type="hidden" id="r3" value="<%= rating.r3 %>" />
+        <input type="hidden" id="r2" value="<%= rating.r2 %>" />
+        <input type="hidden" id="r1" value="<%= rating.r1 %>" />
+        <input type="hidden" id="length" value="<%= reviews.length %>" />
+        
+        <div class="footer-buttom">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-5 col-md-6 col-xs-12">
+                        <div class="copy-right">
+                            <p>©Copyright 2020 | NUPUR | All Rights Reserved. </p>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-7 col-xs-12">
+                        <div class="footer-social">
+                            <ul>
+                                <li class="fb"><a href="#"><i class="fa fa-facebook-square"></i>facebook</a>
+                                </li>
+                                <li class="be"><a href="#"><i class="fa fa-behance"></i>behance</a>
+                                </li>
+                                <li class="tw"><a href="#"><i class="fa fa-twitter"></i>twitter</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- FOOER AREA END HERE -->
+
+    <!-- jQuery Min
+    ==============================================================-->
+    <script src="/js/jquery.min.js"></script>
+
+    <!-- Bootstrap Js 
+    ==============================================================-->
+    <script src="/js/bootstrap.min.js"></script>
+
+    <!-- Meanmenu Js 
+    ==============================================================-->
+    <script src="/js/jquery.meanmenu.js"></script>
+
+    <!-- Isotope Js 
+    ==============================================================-->
+    <script src="/js/isotope.pkgd.min.js"></script>
+
+    <!-- Steller Js 
+    ==============================================================-->
+    <script src="/js/jquery.stellar.min.js"></script>
+
+    <!-- Simple-sticker Js 
+    ==============================================================-->
+    <script src="/js/jquery.simpleTicker.js"></script>
+    
+    <!-- Syotimer Js 
+    ==============================================================-->
+    <script src="/js/jquery.syotimer.min.js"></script>
+
+    <!-- Owl Carosel Js 
+    ==============================================================-->
+    <script src="/js/owl.carousel.min.js"></script>
+
+    <!-- Custom Js 
+    ================================================================-->
+    <script src="/js/main.js"></script>
+    <script src="/assets/js/jquery.min.js"></script>
+    <script src="/assets/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/js/metismenu.min.js"></script>
+    <script src="/assets/js/jquery.slimscroll.js"></script>
+    <script src="/assets/js/waves.min.js"></script>
+
+    <!-- App js -->
+    <script src="/assets/js/app.js"></script>
+    <script>
+        $(document).ready(function(){
+            var r5 = $('#r5').val()
+            var r4 = $('#r4').val()
+            var r3 = $('#r3').val()
+            var r2 = $('#r2').val()
+            var r1 = $('#r1').val()
+            var length = $('#length').val()
+            $('#5star').width(''+(r5/length)*100+'%')
+            $('#4star').width(''+(r4/length)*100+'%')
+            $('#3star').width(''+(r3/length)*100+'%')
+            $('#2star').width(''+(r2/length)*100+'%')
+            $('#1star').width(''+(r1/length)*100+'%')
+
+        })
+    </script>
+</body>
+
+
+<!-- Mirrored from web.dotthemes.com/html/storola-demo/storola/product-details.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 02 May 2020 16:11:17 GMT -->
+</html>

@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<%- include('../admin-partials/head.ejs') %> 
+
+    <body class="sb-nav-fixed">
+        <%- include('../admin-partials/topbar.ejs')  %> 
+        <div id="layoutSidenav">
+			<%- include('../admin-partials/menu.ejs')  %> 
+            <div id="layoutSidenav_content">
+                <main>
+                    <div class="container-fluid">
+						<%- include('../partials/messages.ejs')  %>
+
+                        <h2 class="mt-30 page-title">All Reports</h2>
+                        <ol class="breadcrumb mb-30">
+                            <li class="breadcrumb-item"><a href="/admin/dashboard">Dashboard</a></li>
+                            <li class="breadcrumb-item active">All Report</li>
+                        </ol>
+						<div class="row">
+							<div class="col-lg-8 col-md-7 offset-2">
+								<div class="all-cate-tags">
+									<div class="row">										
+										<div class="col-lg-12 col-md-12">
+											<div class="card card-static-2 mb-30">
+												<div class="card-title-2">
+													<h4>Orders This Month</h4>
+												</div>
+												<div class="card-body-table">
+													<div class="table-responsive">
+														<table class="table ucp-table table-hover" id="ordersMonth">
+															<thead>
+																<tr>
+																	<th>OrderId</th>
+																	<th>Product Title</th>
+																	<th>Category</th>
+																	<th>Price</th>
+																	<th>Quantity</th>
+																	<th>Plan</th>
+																</tr>
+															</thead>
+															<tbody>
+																<% for(var i=0;i<=orders.length-1;i++) {%>
+																	<% for(var j=0;j<=orders[i].items.length-1;j++) { %> 
+																		<% if(compMonth == orders[i].items[j].date.getMonth()-1 && compYear== orders[i].items[j].date.getFullYear()) {%> 
+																<tr>
+																	<td>ORDER<%= orders[i].items[j].orderId %></td>
+																	<td><%= orders[i].items[j].productId.title %></td>
+																	<td><%= orders[i].items[j].productId.category %></td>
+																	<td>
+																		<% if(orders[i].items[j].plan == "basic") {%>
+																			<% if(settings.currency == 'IND') {%> 
+																				<span> <i class="fa fa-rupee"></i><%= orders[i].items[j].productId.basicPrice*orders[i].items[j].qty %> </span>
+																			 <% }else{ %>
+																				 <span><i class="fa fa-dollar"></i><%= orders[i].items[j].productId.basicPrice*orders[i].items[j].qty %> </span>
+																			 <% } %> 
+																		<% }else if(orders[i].items[j].plan == "standard"){ %>
+																			<% if(settings.currency == 'IND') {%> 
+																				<span> <i class="fa fa-rupee"></i><%= orders[i].items[j].productId.standardPrice*orders[i].items[j].qty %></span>
+																			 <% }else{ %>
+																				 <span><i class="fa fa-dollar"></i><%= orders[i].items[j].productId.standardPrice*orders[i].items[j].qty %></span>
+																			 <% } %>  
+																		<%  }else if(orders[i].items[j].plan == "premium"){ %>
+																			<% if(settings.currency == 'IND') {%> 
+																				<span> <i class="fa fa-rupee"></i><%= orders[i].items[j].productId.premiumPrice*orders[i].items[j].qty %> </span>
+																			 <% }else{ %>
+																				 <span><i class="fa fa-dollar"></i><%= orders[i].items[j].productId.premiumPrice*orders[i].items[j].qty %> </span>
+																			 <% } %> 
+																		<% } %> 
+																	</td>
+																	<td><%= orders[i].items[j].qty %></td>
+																	<td><%= orders[i].items[j].plan.toUpperCase() %></td>
+																</tr>
+															<% } %>
+															<% } %>
+															<% } %>   
+															</tbody>
+														</table>
+													</div>
+												</div>
+												<div class="card-body-table-footer">
+													<ul>
+														<!-- <li><button class="download-btn hover-btn">Download JPG</button></li> -->
+														<li><button id="ordersCsv" class="download-btn hover-btn">Download CSV</button></li>
+														<li><button id="ordersPdf" class="download-btn hover-btn">Download Pdf</button></li>
+													</ul>
+												</div>
+											</div>
+
+
+										</div>
+										<div class="col-lg-12 col-md-12">
+											<div class="card card-static-2 mb-30">
+												<div class="card-title-2">
+													<h4>Orders This Year</h4>
+												</div>
+												<div class="card-body-table">
+													<div class="table-responsive">
+														<table class="table ucp-table table-hover" id="ordersYear">
+															<thead>
+																<tr>
+																	<th>OrderId</th>
+																	<th>Product Title</th>
+																	<th>Category</th>
+																	<th>Price</th>
+																	<th>Quantity</th>
+																	<th>Plan</th>
+																</tr>
+															</thead>
+															<tbody>
+																<% for(var i=0;i<=orders.length-1;i++) {%>
+																	<% for(var j=0;j<=orders[i].items.length-1;j++) { %> 
+																		<% if(compYear== orders[i].items[j].date.getFullYear()) {%> 
+																<tr>
+																	<td>ORDER<%= orders[i].items[j].orderId %></td>
+																	<td><%= orders[i].items[j].productId.title %></td>
+																	<td><%= orders[i].items[j].productId.category %></td>
+																	<td>
+																		<% if(orders[i].items[j].plan == "basic") {%>
+																			<% if(settings.currency == 'IND') {%> 
+																				<span> <i class="fa fa-rupee"></i><%= orders[i].items[j].productId.basicPrice*orders[i].items[j].qty %> </span>
+																			 <% }else{ %>
+																				 <span><i class="fa fa-dollar"></i><%= orders[i].items[j].productId.basicPrice*orders[i].items[j].qty %> </span>
+																			 <% } %> 
+																		<% }else if(orders[i].items[j].plan == "standard"){ %>
+																			<% if(settings.currency == 'IND') {%> 
+																				<span> <i class="fa fa-rupee"></i><%= orders[i].items[j].productId.standardPrice*orders[i].items[j].qty %></span>
+																			 <% }else{ %>
+																				 <span><i class="fa fa-dollar"></i><%= orders[i].items[j].productId.standardPrice*orders[i].items[j].qty %></span>
+																			 <% } %>  
+																		<%  }else if(orders[i].items[j].plan == "premium"){ %>
+																			<% if(settings.currency == 'IND') {%> 
+																				<span> <i class="fa fa-rupee"></i><%= orders[i].items[j].productId.premiumPrice*orders[i].items[j].qty %> </span>
+																			 <% }else{ %>
+																				 <span><i class="fa fa-dollar"></i><%= orders[i].items[j].productId.premiumPrice*orders[i].items[j].qty %> </span>
+																			 <% } %> 
+																		<% } %> 
+																	</td>
+																	<td><%= orders[i].items[j].qty %></td>
+																	<td><%= orders[i].items[j].plan.toUpperCase() %></td>
+																</tr>
+															<% } %>
+															<% } %>
+															<% } %>   
+															</tbody>
+														</table>
+													</div>
+												</div>
+												<div class="card-body-table-footer">
+													<ul>
+														<!-- <li><button class="download-btn hover-btn">Download JPG</button></li> -->
+														<li><button id="ordersYearCsv" class="download-btn hover-btn">Download CSV</button></li>
+														<li><button id="ordersYearPdf" class="download-btn hover-btn">Download Pdf</button></li>
+													</ul>
+												</div>
+											</div>
+
+
+										</div>
+									</div>
+								</div>
+							</div>
+                        </div>
+                    </div>
+                </main>
+
+            </div>
+        </div>
+        <script src="/js/jquery-3.4.1.min.js"></script>
+        <script src="/js/tableHTMLExport.js"></script>
+        <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <script src="/js/scripts.js"></script>
+		<script src="/js/datepicker.min.js"></script>
+		<script src="/js/i18n/datepicker.en.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.4.1/jspdf.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/2.3.5/jspdf.plugin.autotable.min.js"></script>
+       <script>
+		   $(document).ready(function(){
+			   $('#ordersPdf').click(function(){
+					$('#ordersMonth').tableHTMLExport({
+						type:'pdf',
+						filename:'monthlyOrders.pdf'
+					})
+			   })
+			   $('#ordersCsv').click(function(){
+					$('#ordersMonth').tableHTMLExport({
+						type:'csv',
+						filename:'monthlyOrders.csv'
+					})
+			   })
+			   $('#ordersYearPdf').click(function(){
+					$('#ordersYear').tableHTMLExport({
+						type:'pdf',
+						filename:'yearOrders.pdf'
+					})
+			   })
+			   $('#ordersYearCsv').click(function(){
+					$('#ordersYear').tableHTMLExport({
+						type:'csv',
+						filename:'yearOrders.csv'
+					})
+			   })
+
+		   })
+
+	   </script>
+    </body>
+
+<!-- Mirrored from gambolthemes.net/html-items/gambo_admin/reports.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 05 Jun 2020 23:09:42 GMT -->
+</html>

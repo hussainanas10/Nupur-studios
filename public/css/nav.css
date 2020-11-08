@@ -1,0 +1,311 @@
+.container1 {
+    max-width: 100%;
+    margin: 0 0px;
+    margin-left: 10px;
+}
+
+nav {
+    background: #fff;
+    box-shadow: 0 0 15px 0 rgba(0, 0, 0, .10)
+}
+
+nav ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    position: relative;
+    text-align: left;
+}
+
+nav li {
+    display: inline-block;
+}
+
+nav a {
+    color: #444;
+    text-decoration: none;
+    display: block;
+    padding: .75em 1em;
+}
+
+nav li:hover {
+    background: #444;
+}
+
+nav li:hover a {
+    color: #fff;
+}
+
+.menu-sub {
+    position: absolute;
+    left: 0;
+    background: #444;
+    width: 95%;
+    display: none;
+    color: #fff;
+    padding: 2em;
+}
+
+nav li:hover .menu-sub {
+    display: block;
+    text-decoration: underline;
+}
+
+.menu-sub li {
+    display: block;
+}
+
+.menu-sub a {
+    padding: 0;
+    margin-bottom: .35em;
+}
+
+.menu-sub a:hover {
+    text-decoration: underline;
+}
+
+.menu-category {
+    margin: 2.5em 0 .5em;
+}
+
+.menu-category:first-of-type {
+    margin-top: 0;
+}
+
+.menu-col-1,
+.menu-col-2,
+.menu-col-3,
+.menu-col-4 {
+    float: left;
+}
+
+.menu-col-1 {
+    width: 25%;
+}
+
+.menu-col-2 {
+    width: 50%;
+}
+
+.menu-sub1 {
+    position: absolute;
+    left: 0;
+    background: #444;
+    width: 50%;
+    display: none;
+    color: #fff;
+    padding: 2em;
+}
+
+nav li:hover .menu-sub1 {
+    display: block;
+    text-decoration: underline;
+}
+
+.menu-sub1 li {
+    display: block;
+}
+
+.menu-sub1 a {
+    padding: 0;
+    margin-bottom: .35em;
+}
+
+.menu-sub1 a:hover {
+    text-decoration: underline;
+}
+
+.menu-sub2 {
+    position: absolute;
+    left: 170;
+    background: #444;
+    width: 50%;
+    display: none;
+    color: #fff;
+    padding: 2em;
+}
+
+nav li:hover .menu-sub2 {
+    display: block;
+}
+
+.menu-sub2 li {
+    display: block;
+}
+
+.menu-sub2 a {
+    padding: 0;
+    margin-bottom: .35em;
+}
+
+.menu-sub2 a:hover {
+    text-decoration: underline;
+    text-decoration: underline;
+}
+
+.menu-sub3 {
+    position: absolute;
+    left: 170;
+    background: #444;
+    width: 30%;
+    display: none;
+    color: #fff;
+    padding: 2em;
+}
+
+nav li:hover .menu-sub3 {
+    display: block;
+    text-decoration: underline;
+}
+
+.menu-sub3 li {
+    display: block;
+}
+
+.menu-sub3 a {
+    padding: 0;
+    margin-bottom: .35em;
+}
+
+.menu-sub3 a:hover {
+    text-decoration: underline;
+}
+
+.menu-sub4 {
+    position: absolute;
+    left: 100;
+    background: #444;
+    width: 20%;
+    display: none;
+    color: #fff;
+    padding: 2em;
+}
+
+nav li:hover .menu-sub4 {
+    display: block;
+}
+
+.menu-sub4 li {
+    display: block;
+}
+
+.menu-sub4 a {
+    padding: 0;
+    margin-bottom: .35em;
+}
+
+.menu-sub4 a:hover {
+    text-decoration: underline;
+}
+
+.menu-sub5 {
+    position: absolute;
+    left: 100;
+    background: #444;
+    width: 15%;
+    display: none;
+    color: #fff;
+    padding: 2em;
+}
+
+nav li:hover .menu-sub5 {
+    display: block;
+}
+
+.menu-sub5 li {
+    display: block;
+}
+
+.menu-sub5 a {
+    padding: 0;
+    margin-bottom: .35em;
+}
+
+.menu-sub5 a:hover {
+    text-decoration: underline;
+}
+
+.undrline li:hover {
+    text-decoration: underline;
+    text-decoration-color: white;
+}
+
+.menu-main a:hover {
+    text-decoration: underline;
+    text-decoration-color: white;
+}
+
+.pop {
+    position: relative;
+    top: 0;
+    z-index: 30;
+    padding-left: 180px !important;
+}
+
+.cus {
+    background-color: #585858 !important;
+}
+
+.text-white {
+    color: white !important;
+}
+
+font-weight-bold {
+    font-weight: bold !important;
+}
+
+.menu-col-1 ul li a {
+    font-size: 14px !important;
+}
+
+.menu-col-2 ul li a {
+    font-size: 14px !important;
+}
+
+.menu-col-3 ul li a {
+    font-size: 14px !important;
+}
+
+#purple {
+    background-color: #673AB7 !important;
+    padding: 5px 10px !important;
+}
+
+.sizedec {
+    font-size: 14px !important;
+}
+
+.search-padd {
+    margin-right: 130px !important;
+    margin-top: 1px;
+}
+
+@media only screen and (max-width: 991px) {
+    .pop {
+        position: relative;
+        top: 0;
+        z-index: 30;
+        padding-left: 0 !important;
+    }
+}
+
+@media only screen and (max-width: 1200px) {
+    .search-padd {
+        margin-right: 20px !important;
+        margin-top: 39px !important;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .pop {
+        display: none;
+    }
+}
+
+.round {
+    border-radius: 5px !important;
+}
+
+.label-danger {
+    margin-left: 5px !important;
+}

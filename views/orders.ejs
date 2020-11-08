@@ -1,0 +1,132 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+    <%- include('partials/dashHead.ejs') %> 
+
+<body class="no-overflow">
+    <%- include('partials/dashHeader.ejs') %> 
+
+    <div class="wrapper ">
+        <div id="sidebar-margin" class="sidebar" data-color="purple" data-background-color="danger">
+            <div class="sidebar-wrapper">
+                <ul class="nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/dashboard">
+                            <i class="material-icons">dashboard</i>
+                            <p>Dashboard</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/profile">
+                            <i class="material-icons">person</i>
+                            <p>User Profile</p>
+                        </a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/orders">
+                            <i class="material-icons">content_paste</i>
+                            <p>orders</p>
+                        </a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link" href="/messages">
+                            <i class="material-icons">library_books</i>
+                            <p>messages</p>
+                        </a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link" href="/bookmarks">
+                            <i class="material-icons">bubble_chart</i>
+                            <p>bookmarks</p>
+                        </a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link" href="/logout">
+                            <i class="material-icons">login</i>
+                            <p>Logout</p>
+                        </a>
+                    </li>
+
+
+                </ul>
+            </div>
+        </div>
+        <div class="main-panel">
+
+            <div class="content mt-1">
+                <div class=" container-fluid ">
+                    <div class="row ">
+                        <div class="col-md-12 ">
+                            <div class="card ">
+                                <div class="card-header card-header-primary ">
+                                    <h4 class="card-title ">Orders</h4>
+                                    <p class="card-category "> Here is a subtitle for this table</p>
+                                </div>
+                                <div class="card-body ">
+                                    <div class="table-responsive ">
+                                        <table class="table ">
+                                            <thead class=" text-primary ">
+                                                <th>#</th>
+                                                <th>Product</th>
+                                                <th>Title</th>
+                                                <th>Category</th>
+                                                <th>Plan</th>
+                                                <th>Total Amount</th>
+                                                <th>Quantity</th>
+                                            </thead>
+                                            <tbody>
+                                            <%for(var i=0;i<=orders.items.length-1;i++) {%> 
+                                                <tr>
+                                                    <td scope="row"><%= i+1 %> </td>
+                                                    <td>
+                                                        <div class="cart-prev">
+                                                            <a href="/products/details/<%= orders.items[i].productId.id  %>"><img style="width: 120px; height: 60px;" src="/images/uploads/<%= orders.items[i].productId.images[0]%>" alt=""></a>
+                                                        </div> 
+                                                    </td>
+                                                    <td><%= orders.items[i].productId.title %></td>
+                                                    <td><%= orders.items[i].productId.category %></td>
+                                                    <td><%= orders.items[i].plan.toUpperCase() %></td>
+                                                    <td>
+                                                        <% if(orders.items[i].plan == "basic") {%>
+                                                            <% if(settings.currency == 'IND') {%> 
+                                                                <span> <i class="fa fa-rupee"></i><%= orders.items[i].productId.basicPrice*orders.items[i].qty %> </span>
+                                                             <% }else{ %>
+                                                                 <span><i class="fa fa-dollar"></i><%= orders.items[i].productId.basicPrice*orders.items[i].qty %> </span>
+                                                             <% } %> 
+                                                        <% }else if(orders.items[i].plan == "standard"){ %>
+                                                            <% if(settings.currency == 'IND') {%> 
+                                                                <span> <i class="fa fa-rupee"></i><%= orders.items[i].productId.standardPrice*orders.items[i].qty %></span>
+                                                             <% }else{ %>
+                                                                 <span><i class="fa fa-dollar"></i><%= orders.items[i].productId.standardPrice*orders.items[i].qty %></span>
+                                                             <% } %>  
+                                                        <%  }else if(orders.items[i].plan == "premium"){ %>
+                                                            <% if(settings.currency == 'IND') {%> 
+                                                                <span> <i class="fa fa-rupee"></i><%= orders.items[i].productId.premiumPrice*orders.items[i].qty %> </span>
+                                                             <% }else{ %>
+                                                                 <span><i class="fa fa-dollar"></i><%= orders.items[i].productId.premiumPrice*orders.items[i].qty %> </span>
+                                                             <% } %> 
+                                                        <% } %> 
+                                                    </td>
+                                                    <td><%= orders.items[i].qty %></td>
+                                                </tr>
+                                                <% } %> 
+                                        
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <%- include('partials/dashFoot.ejs') %> 
+
+</body>
+
+</html>

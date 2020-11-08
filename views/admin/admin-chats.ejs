@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<%- include('../admin-partials/head.ejs') %> 
+
+    <body class="sb-nav-fixed">
+        <%- include('../admin-partials/topbar.ejs')  %> 
+        <div id="layoutSidenav">
+			<%- include('../admin-partials/menu.ejs')  %>
+            <div id="layoutSidenav_content">
+                <main>
+                    <div class="container">
+                        <h2 class="mt-30 page-title">Messages</h2>
+                        <ol class="breadcrumb mb-30">
+                            <li class="breadcrumb-item"><a href="/admin/dashboard">Dashboard</a></li>
+                            <li class="breadcrumb-item active">Messages</li>
+                        </ol>
+          
+                                  <div class="row rounded-lg overflow-hidden shadow">
+                                    <!-- Users box-->
+                                    <div class="col-5 px-0">
+                                      <div class="bg-white">
+                                
+                                        <div class="bg-gray px-4 py-2 bg-light">
+                                          <p class="h5 mb-0 py-1">Chat Box</p>
+                                        </div>
+                                
+                                        <div class="messages-box">
+                                          <div class="list-group rounded-0">
+
+                                            <% for(var j=0 ;j<= users.length-1 ;j++) {%> 
+                                  
+                                              <a href="#<%= users[j].username %>" data-toggle="tab" role="tab" class="list-group-item list-group-item-action list-group-item-light rounded-0">
+                                                <div class="media">
+                                                  <% if(users[j].profilePhoto){ %>
+                                                    <img src="/images/uploads/<%= users[j].profilePhoto %>" alt="user" width="50" height="50" class="rounded-circle">
+                                                  <% }else{ %>  
+                                                    <img src="https://res.cloudinary.com/mhmd/image/upload/v1564960395/avatar_usae7z.svg" alt="user" width="50" class="rounded-circle">
+                                                  <% } %> 
+                                                  <div class="media-body ml-4">
+                                                    <div class="d-flex align-items-center justify-content-between mb-1">
+                                                      <h6 class="mb-0"><%= users[j].username %> </h6><small class="small font-weight-bold"></small>
+                                                    </div>
+                                                    <p class="font-italic text-muted mb-0 text-small"></p>
+                                                  </div>
+                                                </div>
+                                              </a>
+                                            <% } %> 
+                                
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <!-- Chat Box-->
+                                    <div class="col-7 px-0 tab-content">
+                                      <% for(var j=0 ;j<= users.length-1 ;j++) {%> 
+                                       
+                                          <div class="col-12 tab-pane p-3" id="<%= users[j].username %>" role="tabpanel">
+                                              <div class="col-12 px-0">
+                                                  <div class="px-4 py-5 chat-box bg-white">
+                                                    <!-- Sender Message-->
+                                                    <% for(var i=0;i<=messages.length-1;i++){ %> 
+                                                        <% if(messages[i].senderId == user.id && messages[i].recieverId == users[j].id) {%> 
+                                                            <!-- Reciever Message-->
+                                                            <div class="media w-50 ml-auto mb-3">
+                                                              <div class="media-body">
+                                                                <div class="bg-primary rounded py-2 px-3 mb-2">
+                                                                  <p class="text-small mb-0 text-white"><%= messages[i].content %></p>
+                                                                </div>
+                                                                <p class="small text-muted"><%= messages[i].createdAt.toString().substring(0,15) %> </p>
+                                                              </div>
+                                                            </div>
+                                                        <% }else if(messages[i].recieverId == user.id && messages[i].senderId == users[j].id ){ %> 
+                                                            <div class="media w-50 mb-3">
+                                                              <% if(users[j].profilePhoto){ %>
+                                                                <img src="/images/uploads/<%= users[j].profilePhoto %>" alt="user" width="50" height="50" class="rounded-circle">
+                                                              <% }else{ %>  
+                                                                <img src="https://res.cloudinary.com/mhmd/image/upload/v1564960395/avatar_usae7z.svg" alt="user" width="50" class="rounded-circle">
+                                                              <% } %> 
+                                                            <div class="media-body ml-3">
+                                                                <div class="bg-light rounded py-2 px-3 mb-2">
+                                                                <p class="text-small mb-0 text-muted"><%= messages[i].content %></p>
+                                                                </div>
+                                                                <p class="small text-muted"><%= messages[i].createdAt.toString().substring(0,15) %></p>
+                                                            </div>
+                                                            </div>
+                                                        <% } %> 
+                    
+                                                    <% } %>
+                                            
+                                                  </div>
+                                            
+                                                  <!-- Typing area -->
+                                                  <form action="/admin/messages/<%= users[j].id %>" method="POST" class="bg-light">
+                                                    <div class="input-group">
+                                                      <input type="text" placeholder="Type a message" name="content" aria-describedby="button-addon2" class="form-control rounded-0 border-0 py-4 bg-light">
+                                                      <div class="input-group-append">
+                                                        <button id="button-addon2" type="submit" class="btn btn-link"> <i class="fa fa-paper-plane"></i></button>
+                                                      </div>
+                                                    </div>
+                                                  </form>
+                                            
+                                                </div>
+                                          </div>
+                                      <% } %> 
+          
+                                      </div>
+                                  </div>
+                      </div>
+
+                </main>
+            </div>
+        </div>
+        <script src="/js/jquery-3.4.1.min.js"></script>
+        <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <script src="/js/scripts.js"></script>
+       
+    </body>
+
+<!-- Mirrored from gambolthemes.net/html-items/gambo_admin/category.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 05 Jun 2020 23:09:17 GMT -->
+</html>

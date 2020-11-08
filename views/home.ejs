@@ -1,0 +1,497 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+
+<!-- Mirrored from web.dotthemes.com/html/storola-demo/storola/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 02 May 2020 16:09:47 GMT -->
+    <%- include('partials/categoryHead.ejs')  %> 
+
+<body>
+    
+    <%- include('partials/header.ejs')  %> 
+    <!-- HEADER END HERE -->
+
+    <!-- HERO AREA START HERE -->
+    <section class="hero-area overly-bg" data-stellar-background-ratio=".9" style="background-image: url(/images/banner/hero.jpg)">
+        <div class="container">
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="hero-wrap">
+                        <h2 class="hero-title">785500+ Items For Sale</h2>
+                        <p class="hero-intro">We Are specialize in creating some of the Best Free and Premium Bootstrap PSD Templates, HTML Templates, Wordpress Themes & Others Graphics</p>
+                        <form action="#" class="item-search">
+                            <input type="text" placeholder="Search your Items">
+                        </form>
+                        <div class="n-search-list">
+                            <ul>
+                                <% for(var i=0;i<=categories.length-1;i++) {%> 
+                                <li data-filter=".cat1"><a href="/categories?category=<%= categories[i].category.split(' ').join('+') %>" ><%= categories[i].category %></a></li>
+                                <% } %> 
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- HERO AREA END HERE -->
+
+    <!-- TOP SELLING PRODUCT AREA START HERE -->
+    <section class="feature-product-area section-padding">
+        <div class="container">
+ 
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="section-intro">
+                        <h2 class="section-title">Top Selling</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+              <div class="choose-wrap owl-carousel ">
+                <!-- Single Product Start -->
+            <% for(var i=products.length-1 ; i>=0  ;i--){ %> 
+                <%if(products[i].topselling == true) {%> 
+                <div class="col-md-3 col-sm-6">
+                    <div class="item-demo" style="width: 300px">
+                        <figure>
+                            <div id="product<%= products[i].id %>" class="carousel slide" data-ride="carousel">
+                                <!-- <ol class="carousel-indicators">
+                                  <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                                  <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                                  <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                                </ol> -->
+                                <div class="carousel-inner">
+                                <div class="carousel-item  active">
+                                    <img class="d-block w-100" src="/images/uploads/<%= products[i].images[0] %>" alt="Images">
+                                </div>
+                                </div>
+                                <a class="carousel-control-prev" href="#product<%= products[i].id  %>" role="button" data-slide="prev">
+                                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                  <span class="sr-only">Previous</span>
+                                </a>
+                                <a class="carousel-control-next" href="#product<%= products[i].id %>" role="button" data-slide="next">
+                                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                  <span class="sr-only">Next</span>
+                                </a>
+                            </div>
+                            <div class="product-caption">
+                                <div class="caption-cel">
+                                    <div class="product-link">
+                                        <div>
+                                            <div>
+                                                <a href="/products/details/<%= products[i].id %>">View Details <span><i class="fa fa-eye"></i></span></a>
+                                            </div>
+                                            <div>
+                                                <a href="/cart/add/<%= products[i].id %>/?plan=basic">Add to Cart<span><i class="fa fa-shopping-cart"></i></span></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </figure>
+                        <div class="product-info">
+                            <div class="product-header">
+                                <h3 class="product-name"><a href="/products/details/<%= products[i].id %>"><%= products[i].title %></a> 
+                                    <% if(settings.currency == 'IND') {%> 
+                                        <span> <i class="fa fa-rupee" style="color:#533396"></i> <%= products[i].basicPrice %> </span>
+                                     <% }else{ %>
+                                         <span><i class="fa fa-dollar" style="color:#533396"></i><%= products[i].basicPrice %> </span>
+                                     <% } %>
+                                     
+                                </h3>
+                                <!-- <span class="p-author">
+                                    <a href="#">@admin</a>
+                                </span> -->
+                            </div>
+                            <div class="product-meta">
+                                <span class="meta-download">
+                                    <i class="fa fa-cloud-download"></i><%= products[i].orders %> 
+                                </span>
+                                <span class="meta-love">
+                                    <i class="fa fa-heart"></i><%= products[i].favorites %> 
+                                </span>
+                                <span class="meta-rating">
+                                    <% for(var k=1;k<=5;k++){ %> 
+                                        <% if(k<=products[i].rating){ %> 
+                                        <i class="fa fa-star"></i>
+                                        <% }else{ %>
+                                        <i class="fa fa-star-o"></i>
+                                        <% } %> 
+                                    <% } %>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <% } %> 
+                <!-- Single Product End -->
+            <% } %> 
+
+            </div>
+        </div>
+    </section>
+    <!-- FREATURE PRODUCT AREA END HERE -->
+
+    <!-- NEW PRODUCT AREA START HERE -->
+    <section class="new-product-area section-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="section-intro">
+                        <h2 class="section-title">new Products</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="n-prodruct-wrap">
+                    <div class="n-product-list">
+                        <ul>
+                            <li class="active" data-filter="*"><a href="#">All</a>
+                            </li>
+                            <li data-filter=".cat1"><a href="#">Logo</a></li>
+                            <li data-filter=".cat2"><a href="#">Business Card</a></li>
+                            <li data-filter=".cat3"><a href="#">Flyer</a></li>
+                            <li data-filter=".cat4"><a href="#">Brochure</a></li>
+                            <li data-filter=".cat5"><a href="#">Poster</a></li>
+                            <li data-filter=".cat6"><a href="#">Mock UP</a></li>
+                        </ul>
+                    </div>
+                    <!-- Product Container Start -->
+                    <div class="product-container">
+
+                        
+                        <!-- Single New Product End -->
+                        <%for(var i =products.length-1;i>=0;i--) {%> 
+                        <div class="single-new cat2 cat4">
+                            <figure>
+                                <div id="product<%= products[i].id %>" class="carousel slide" data-ride="carousel">
+                                    <!-- <ol class="carousel-indicators">
+                                      <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                                      <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                                      <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                                    </ol> -->
+                                    <div class="carousel-inner">
+                                    <div class="carousel-item active">
+                                        <img class="d-block w-100" style="height: 230px; width: 100%;" src="/images/uploads/<%= products[i].images[0] %>" alt="Images">
+                                    </div>
+                                    </div>
+                                    <a class="carousel-control-prev" href="#product<%= products[i].id  %>" role="button" data-slide="prev">
+                                      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                      <span class="sr-only">Previous</span>
+                                    </a>
+                                    <a class="carousel-control-next" href="#product<%= products[i].id %>" role="button" data-slide="next">
+                                      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                      <span class="sr-only">Next</span>
+                                    </a>
+                                </div>
+                                <div class="product-caption">
+                                    <div class="caption-cel">
+                                        <div class="product-link">
+                                            <div>
+                                                <div>
+                                                    <a href="/products/details/<%= products[i].id %>">View Details <span><i class="fa fa-eye"></i></span></a>
+                                                </div>
+                                                <div>
+                                                    <a href="/cart/add/<%= products[i].id %>/?plan=basic">Add to Cart<span><i class="fa fa-shopping-cart"></i></span></a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </figure>
+                            <div class="product-info">
+                                <div class="product-header">
+                                    <h3 class="product-name"><a href="/products/details/<%= products[i].id %>"><%= products[i].title %> </a> 
+                                        <% if(settings.currency == 'IND') {%> 
+                                            <span> <i class="fa fa-rupee" style="color:#533396"></i> <%= products[i].basicPrice %> </span>
+                                         <% }else{ %>
+                                             <span><i class="fa fa-dollar" style="color:#533396"></i><%= products[i].basicPrice %> </span>
+                                         <% } %>
+                                         
+                                    </h3>
+                                    <span class="p-author">
+                                        <a href="#">@admin</a>
+                                    </span>
+                                </div>
+                                <div class="product-meta">
+                                    <span class="meta-download">
+                                        <i class="fa fa-cloud-download"></i><%= products[i].orders %> 
+                                    </span>
+                                    <span class="meta-love">
+                                        <i class="fa fa-heart"></i><%= products[i].favorites  %> 
+                                    </span>
+                                    <span class="meta-rating">
+                                        <% for(var k=1;k<=5;k++){ %> 
+                                            <% if(k<=products[i].rating){ %> 
+                                            <i class="fa fa-star"></i>
+                                            <% }else{ %>
+                                            <i class="fa fa-star-o"></i>
+                                            <% } %> 
+                                        <% } %>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    <% } %> 
+                        <!-- Single New Product End -->
+
+                    </div>
+                    <!-- Product Container End -->
+                    <!-- <div class="product-button">
+                        <button class="custom-btn">View All Products</button>
+                    </div> -->
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- FEATEAR AREA END HERE -->
+
+    <!-- SERVICE-1 AREA START HERE -->
+    <section class="sevice-1-area section-padding">
+        <div class="container">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="section-intro">
+                  <h2 class="section-title">BROWSE OUR PROFESSIONAL SERVICES</h2>
+                  <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque.</p>
+                </div>
+              </div>
+            </div>
+            <div class="row" align="center">
+                <div class="col-6 col-md-4">
+                    <div class="service-entry color-1">
+                        <div class="service-icon">
+                            <img src="/images/service/serv1.png" alt="">
+                        </div>
+                        <h3 class="service-headline">GRAPHICS & DESIGN</h3>
+                    </div>
+                </div>
+                <!-- Service Entry End -->
+                <div class="col-6 col-md-4">
+                    <div class="service-entry color-2">
+                        <div class="service-icon">
+                            <img src="/images/service/serv2.png" alt="">
+                        </div>
+                        <h3 class="service-headline">DIGITAL MARKETING</h3>
+                    </div>
+                </div>
+                <!-- Service Entry End -->
+                <div class="col-6 col-md-4">
+                   <div class="service-entry color-3">
+                       <div class="service-icon">
+                           <img src="/images/service/serv3.png" alt="">
+                       </div>
+                       <h3 class="service-headline">VIDEO & ANIMATION</h3>
+                   </div>
+               </div>
+             </div>
+             <div class="row">
+               <div class="col-6 col-md-4">
+                  <div class="service-entry color-4">
+                      <div class="service-icon">
+                          <img src="/images/service/serv4.png" alt="">
+                      </div>
+                      <h3 class="service-headline">WEBSITE/TECH</h3>
+                  </div>
+              </div>
+                 <!-- Service Entry End -->
+                 <div class="col-6 col-md-4">
+                    <div class="service-entry color-5">
+                        <div class="service-icon">
+                            <img src="/images/service/serv5.png" alt="">
+                        </div>
+                        <h3 class="service-headline">PHOTO EDITING</h3>
+                    </div>
+                </div>
+                 <!-- Service Entry End -->
+                 <div class="col-6 col-md-4">
+                    <div class="service-entry color-6">
+                        <div class="service-icon">
+                            <img src="/images/service/serv6.png" alt="">
+                        </div>
+                        <h3 class="service-headline">PHOTOGRAPHY</h3>
+                    </div>
+                </div>
+    </section>
+
+    <!-- CHOOSING AREA START HERE -->
+    <section class="choose-us-area section-padding">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="section-intro">
+                            <h2 class="section-title">WHY YOU SHOULD CHOOSE US</h2>
+                            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus.</p>
+                        </div>
+                        <div class="choose-wrap owl-carousel owl-theme">
+                            <div class="choose-entry color-1">
+                                <span class="choose-icon">
+                                    <i class="fa fa-users"></i>
+                                </span>
+                                <div class="choose-info">
+                                    <h4>Great Support</h4>
+                                    <p>We offer quick and professional support, with satisfaction.
+                                    </p>
+                                </div>
+                            </div>
+                            <!-- Choose Entry End -->
+                            <div class="choose-entry color-2">
+                                <span class="choose-icon">
+                                    <i class="fa fa-heart"></i>
+                                </span>
+                                <div class="choose-info">
+                                    <h4>Beautiful Themes</h4>
+                                    <p>Our Themes are clean, will surely make your site stand out.
+                                    </p>
+                                </div>
+                            </div>
+                            <!-- Choose Entry End -->
+                            <div class="choose-entry color-3">
+                                <span class="choose-icon">
+                                    <i class="fa fa-globe"></i>
+                                </span>
+                                <div class="choose-info">
+                                    <h4>Excellent Quality</h4>
+                                    <p>We create high quality and professional looking Templates.</p>
+                                </div>
+                            </div>
+                            <!-- Choose Entry End -->
+                            <div class="choose-entry color-1">
+                                <span class="choose-icon">
+                                    <i class="fa fa-users"></i>
+                                </span>
+                                <div class="choose-info">
+                                    <h4>Great Support</h4>
+                                    <p>We offer quick and professional support, with satisfaction.
+                                    </p>
+                                </div>
+                            </div>
+                            <!-- Choose Entry End -->
+                            <div class="choose-entry color-2">
+                                <span class="choose-icon">
+                                    <i class="fa fa-heart"></i>
+                                </span>
+                                <div class="choose-info">
+                                    <h4>Beautiful Themes</h4>
+                                    <p>Our Themes are clean, will surely make your site stand out.
+                                    </p>
+                                </div>
+                            </div>
+                            <!-- Choose Entry End -->
+                            <div class="choose-entry color-3">
+                                <span class="choose-icon">
+                                    <i class="fa fa-globe"></i>
+                                </span>
+                                <div class="choose-info">
+                                    <h4>Excellent Quality</h4>
+                                    <p>We create high quality and professional looking Templates.</p>
+                                </div>
+                            </div>
+                            <!-- Choose Entry End -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    <!-- CHOOSING AREA END HERE -->
+
+    <!-- PROMO AREA START HERE -->
+    <section class="promo-area section-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 col-sm-6">
+                    <div class="single-promo">
+                        <span class="promo-icon"><i class="fa fa-laptop"></i></span>
+                        <h3 class="promo-heading">High Quality Products</h3>
+                        <p>Product made BY professionals with 5 years of work experience.</p>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="single-promo">
+                        <span class="promo-icon"><i class="fa fa-clock-o"></i></span>
+                        <h3 class="promo-heading">24/7 Customer Services</h3>
+                        <p>Our Customer Services Managers will always help you.</p>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="single-promo">
+                        <span class="promo-icon"><i class="fa fa-thumbs-o-up"></i></span>
+                        <h3 class="promo-heading">100% Satisfaction</h3>
+                        <p>In case you are not satisfied with the purchased product, we’ll change it.</p>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="single-promo">
+                        <span class="promo-icon"><i class="fa fa-money"></i></span>
+                        <h3 class="promo-heading">Money Back guarantee</h3>
+                        <p>In case you change your mind you’ll get a refund in 30 days.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- PROMO AREA END HERE -->
+
+    <!-- CLIENT AREA START HERE -->
+    <section class="client-area overly-bg" data-stellar-background-ratio="0.6" style="background-image: url(/images/client/client-bg.jpg)">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="client-wrap owl-carousel">
+                        <div class="single-quote">
+                            <div class="quote-thumb">
+                                <img src="/images/client/cl1.jpg" alt="">
+                            </div>
+                            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium</p>
+                            <div class="client-name">
+                                <h5>albert Hunter</h5>
+                                <span>CEO, Jhon Heart, Austalia</span>
+                            </div>
+                        </div>
+                        <!-- Singel Quote End -->
+                        <div class="single-quote">
+                            <div class="quote-thumb">
+                                <img src="/images/team/tm1.jpg" alt="">
+                            </div>
+                            <p>consectetur adipisicing elit. Optio omnis possimus accusamus autem odio, nisi iusto nihil illo harum, tempore soluta minus nemo ab at ipsa reprehenderit facilis officiis dolorum?</p>
+                            <div class="client-name">
+                                <h5>albert Hunter</h5>
+                                <span>CEO, Jhon Heart, Austalia</span>
+                            </div>
+                        </div>
+
+                        <div class="single-quote">
+                            <div class="quote-thumb">
+                                <img src="/images/client/cl1.jpg" alt="">
+                            </div>
+                            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium</p>
+                            <div class="client-name">
+                                <h5>albert Hunter</h5>
+                                <span>CEO, Jhon Heart, Austalia</span>
+                            </div>
+                        </div>
+                        <!-- Singel Quote End -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- CLIENT AREA END HERE -->
+
+    <!-- FOOTER AREA START HERE -->
+    <%- include('partials/footer.ejs') %> 
+    <!-- FOOER AREA END HERE -->
+
+    <%- include('partials/foot.ejs')  %> 
+    <script>
+    $(document).on('ready', function () {
+      // initialization of slick carousel
+      $.HSCore.components.HSSlickCarousel.init('.js-slick-carousel');
+    });</script>
+</body>
+
+
+<!-- Mirrored from web.dotthemes.com/html/storola-demo/storola/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 02 May 2020 16:10:21 GMT -->
+</html>

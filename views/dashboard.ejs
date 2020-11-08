@@ -1,0 +1,208 @@
+<!--
+=========================================================
+Material Dashboard - v2.1.2
+=========================================================
+
+Product Page: https://www.creative-tim.com/product/material-dashboard
+Copyright 2020 Creative Tim (https://www.creative-tim.com)
+Coded by Creative Tim
+
+=========================================================
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software. -->
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include('partials/dashHead.ejs') %> 
+
+<body class="no-overflow">
+    <%- include('partials/dashHeader.ejs') %> 
+    <div class="wrapper">
+        <div id="sidebar-margin" class="sidebar" data-color="purple" data-background-color="danger">
+            <div class="sidebar-wrapper">
+                <ul class="nav">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/dashboard">
+                            <i class="material-icons">dashboard</i>
+                            <p>Dashboard</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/profile">
+                            <i class="material-icons">person</i>
+                            <p>User Profile</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/orders">
+                            <i class="material-icons">content_paste</i>
+                            <p>orders</p>
+                        </a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link" href="/messages">
+                            <i class="material-icons">library_books</i>
+                            <p>messages</p>
+                        </a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link" href="/bookmarks">
+                            <i class="material-icons">bubble_chart</i>
+                            <p>bookmarks</p>
+                        </a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link" href="/logout">
+                            <i class="material-icons">login</i>
+                            <p>Logout</p>
+                        </a>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+        <div class="main-panel">
+            <div class="content dash-content mt-2">
+                <div class="container-fluid ">
+                    <div class="row">
+
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-3 col-md-6 col-sm-6">
+                            <div class="card card-stats">
+                                <div class="card-header card-header-warning card-header-icon">
+                                    <div class="card-icon">
+                                        <i class="material-icons px-2">content_copy</i>
+                                    </div>
+                                    <p class="card-category">Total Orders</p>
+                                    <h3 class="card-title">
+                                        <%= orders.items.length %> 
+                                        <!-- <small>GB</small> -->
+                                    </h3>
+                                </div>
+                                <div class="card-footer">
+                                    <div class="stats">
+                                        <i class="material-icons">date_range</i> Updated regularly
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6">
+                            <div class="card card-stats">
+                                <div class="card-header card-header-success card-header-icon">
+                                    <div class="card-icon">
+                                        <i class="material-icons px-2">store</i>
+                                    </div>
+                                    <p class="card-category">Revenue Spent</p>
+                                    <h3 class="card-title">
+                                        <% if(settings.currency == 'IND') {%> 
+                                            <i class="fa fa-rupee" style="font-size:23px;height: 23px;width: 23px;"></i><%= revenue %>
+                                        <% }else{ %>
+                                            <i class="fa fa-dollar" style="font-size:23px;height: 23px;width: 23px;"></i><%= revenue%>
+                                        <% } %>  
+                                    </h3>
+                                </div>
+                                <div class="card-footer">
+                                    <div class="stats">
+                                        <i class="material-icons">date_range</i> Updated regularly
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6">
+                            <div class="card card-stats">
+                                <div class="card-header card-header-danger card-header-icon">
+                                    <div class="card-icon" >
+                                        <i class="material-icons px-2">bookmarks</i>
+                                    </div>
+                                    <p class="card-category">Saved</p>
+                                    <h3 class="card-title">
+                                        <%= saved.productId.length %> 
+                                    </h3>
+                                </div>
+                                <div class="card-footer">
+                                    <div class="stats">
+                                        <i class="material-icons">date_range</i> Updated regularly
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6">
+                            <div class="card card-stats">
+                                <div class="card-header card-header-info card-header-icon">
+                                    <div class="card-icon">
+                                        <i class="material-icons px-2">message</i>
+                                    </div>
+                                    <p class="card-category">Messages sent</p>
+                                    <h3 class="card-title">+<%= messages.length %></h3>
+                                </div>
+                                <div class="card-footer">
+                                    <div class="stats">
+                                        <i class="material-icons">date_range</i> Updated regularly
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-8 col-md-8 offset-2">
+                            <div class="card">
+                                <div class="card-header card-header-warning">
+                                    <h4 class="card-title">Recent Orders</h4>
+                                    <p class="card-category">recent 5 orders</p>
+                                </div>
+                                <div class="card-body table-responsive">
+                                    <table class="table table-hover">
+                                        <thead class="text-warning">
+                                            <th>ID</th>
+                                            <th>Product</th>
+                                            <th>Category</th>
+                                            <th>Plan</th>
+                                            <th>Price</th>
+                                        </thead>
+                                        <tbody>
+                                        <%for(var i=orders.items.length-1;i>=0;i--) {%> 
+                                            <tr>
+                                                <td><%= i+1 %></td>
+                                                <td><%= orders.items[i].productId.title %></td>
+                                                <td><%= orders.items[i].productId.category %></td>
+                                                <td><%= orders.items[i].plan.toUpperCase() %></td>
+                                                <td>
+                                                    <% if(settings.currency == 'IND') {%> 
+                                                        <i class="fa fa-rupee"></i>
+                                                        <% if(orders.items[i].plan == "basic") {%> 
+                                                            <%= orders.items[i].productId.basicPrice %> 
+                                                        <% }else if(orders.items[i].plan == "standard"){ %> 
+                                                            <%= orders.items[i].productId.standardPrice %> 
+                                                        <%  }else if(orders.items[i].plan == "premium"){ %>
+                                                            <%= orders.items[i].productId.premiumPrice %> 
+                                                        <% } %>
+                                                    <% }else{ %>
+                                                        <i class="fa fa-dollar"></i>
+                                                        <% if(orders.items[i].plan == "basic") {%> 
+                                                            <%= orders.items[i].productId.basicPrice %> 
+                                                        <% }else if(orders.items[i].plan == "standard"){ %> 
+                                                            <%= orders.items[i].productId.standardPrice %> 
+                                                        <%  }else if(orders.items[i].plan == "premium"){ %>
+                                                            <%= orders.items[i].productId.premiumPrice %> 
+                                                        <% } %>
+                                                    <% } %>  
+                                                </td>
+                                            </tr>
+                                            <% if(i==orders.items.length-5){break} %> 
+                                        <% } %> 
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <%- include('partials/dashFoot.ejs') %> 
+</body>
+
+</html>

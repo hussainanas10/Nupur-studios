@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<!-- Mirrored from web.dotthemes.com/html/storola-demo/storola/cart.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 02 May 2020 16:11:00 GMT -->
+<head>
+    <%- include('partials/categoryHead.ejs')  %> 
+
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        
+</head>
+
+<body>
+    <%- include('partials/header.ejs')  %> 
+    <!-- ABOUT PROMO START HERE -->
+    <div class="promo-area" style="background-image: url(images/banner/inner-top.jpg)">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="promo-text">
+                        <h2>MY ACCOUNT</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ABOUT PROMO END HERE -->
+
+    <!-- BREADCRUMB START HERE -->
+    <div class="about-breadcrumb">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="#">Home</a>
+                        </li>
+                        <li class="breadcrumb-item">Page</li>
+                        <li class="breadcrumb-item active">Cart</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- BREADCRUMB END HERE -->
+
+    <!-- CART AREA START HERE -->
+    <main class="cart-area main-content">
+        <div class="product-cart">
+            <div class="container">
+                <div class="row">                                                                               
+                    <div class="col-md-12">
+                        <div class="cart-wrap">
+                            <div class="row cart-header">
+                               <div class="col-sm-2">
+                                   <strong class="p-title">item</strong>
+                               </div>
+                               <div class="col-sm-3">
+                                   <strong class="p-title">Name</strong>
+                               </div>
+                               <div class="col-sm-2">
+                                   <strong class="p-title">quantity</strong>
+                               </div>
+                               <div class="col-sm-1">
+                                   <strong class="p-title">price</strong>
+                               </div>
+                               <div class="col-sm-2">
+                                   <strong class="p-title">total price</strong>
+                               </div>
+                                <div class="col-sm-2">
+                                   <strong class="p-title">remove</strong>
+                               </div>
+                            </div> 
+
+                            <% for(var i=0;i<=cart.items.length-1;i++) {%> 
+                            <!-- Single Cart Start-->
+                            <div class="row single-cart">
+                                <div class="col-sm-2 no-padding">
+                                    <div class="cart-prev">
+                                        <a href="/products/details/<%= cart.items[i].productId.id  %>"><img src="/images/uploads/<%= cart.items[i].productId.images[0] %>" alt=""></a>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3 text-center">
+                                    <div class="product-heading">
+                                        <p><%= cart.items[i].productId.title %></p>
+                                        <span class="product-rating">
+                                            <% for(var k=1;k<=5;k++){ %> 
+                                                <% if(k<=cart.items[i].productId.rating){ %> 
+                                                <i class="fa fa-star"></i>
+                                                <% }else{ %>
+                                                <i class="fa fa-star-o"></i>
+                                                <% } %> 
+                                            <% } %>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="col-sm-2  text-center">
+                                    <div class="product-quantity">
+                                        <div class="cart-count">
+                                            <a href="/cart/decrease/<%= cart.items[i].productId._id %>"><button class="qty-changer" id="minus" >-</button></a>
+                                            <input type="text" id="changer" value="<%= cart.items[i].qty %>" name="qtybutton" class="qty-input">
+                                            <a href="/cart/increase/<%= cart.items[i].productId._id %>"><button class="qty-changer" id="plus" >+</button></a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-1  text-center">
+                                    <strong class="s-cart-price">
+                                   
+                                            <!-- <div><i class="fa fa-rupee"></i></div> -->
+                                            <div >
+                                                <% if(settings.currency == 'IND') {%> 
+                                                    <span> <i class="fa fa-rupee"></i>
+                                                        <% if(cart.items[i].plan == "basic") {%> 
+                                                            <%= cart.items[i].productId.basicPrice %> 
+                                                        <% }else if(cart.items[i].plan == "standard"){ %> 
+                                                            <%= cart.items[i].productId.standardPrice %> 
+                                                        <%  }else if(cart.items[i].plan == "premium"){ %>
+                                                            <%= cart.items[i].productId.premiumPrice %> 
+                                                        <% } %> 
+                                                    </span>
+                                                 <% }else{ %>
+                                                    <span><i class="fa fa-dollar"></i>
+                                                        <% if(cart.items[i].plan == "basic") {%> 
+                                                            <%= cart.items[i].productId.basicPrice %> 
+                                                        <% }else if(cart.items[i].plan == "standard"){ %> 
+                                                            <%= cart.items[i].productId.standardPrice %> 
+                                                        <%  }else if(cart.items[i].plan == "premium"){ %>
+                                                            <%= cart.items[i].productId.premiumPrice %> 
+                                                        <% } %> 
+                                                    </span>
+                                                 <% } %>  
+                                            
+                                            </div>
+                                   </strong>
+                                </div>
+                                <div class="col-sm-2 col-sm-offset-1">
+                                    <strong class="s-cart-price" >
+                                            <!-- <div><i class="fa fa-rupee"></i></div> -->
+                                            <div >
+                                                <% if(settings.currency == 'IND') {%> 
+                                                    <span> <i class="fa fa-rupee"></i>
+                                                        <% if(cart.items[i].plan == "basic") {%> 
+                                                            <%= cart.items[i].qty*cart.items[i].productId.basicPrice %> 
+                                                        <% }else if(cart.items[i].plan == "standard"){ %> 
+                                                            <%= cart.items[i].qty*cart.items[i].productId.standardPrice %> 
+                                                        <%  }else if(cart.items[i].plan == "premium"){ %>
+                                                            <%= cart.items[i].qty*cart.items[i].productId.premiumPrice %> 
+                                                        <% } %>
+                                                    </span>
+                                                 <% }else{ %>
+                                                    <span><i class="fa fa-dollar"></i>
+                                                        <% if(cart.items[i].plan == "basic") {%> 
+                                                            <%= cart.items[i].qty*cart.items[i].productId.basicPrice %> 
+                                                        <% }else if(cart.items[i].plan == "standard"){ %> 
+                                                            <%= cart.items[i].qty*cart.items[i].productId.standardPrice %> 
+                                                        <%  }else if(cart.items[i].plan == "premium"){ %>
+                                                            <%= cart.items[i].qty*cart.items[i].productId.premiumPrice %> 
+                                                        <% } %>
+                                                    </span>
+                                                 <% } %>  
+
+                                            </div>
+
+                                    
+                                    </strong>
+                                    <a href="/cart/remove/<%= cart.items[i].productId._id %>"><div class="cart-remove">X</div></a>
+                                </div>
+                            </div> <!-- Single Cart End --> 
+                        <% } %> 
+
+
+                        </div> <!-- Cart Wrap End -->
+                    </div>
+                </div>
+            </div>
+        </div> <!-- Product Cart End -->
+        <section class="product-coupon">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-5 col-md-3 col-xs-12 pc-box">
+                        <div class="update-coupon">
+                            <a href="/home" class="custom-btn">update cart</a>
+                        </div>
+                    </div>
+                    <div class="col-sm-7 col-md-5 col-xs-12  pc-box">
+                        <div class="offer-coupon">
+                            <h4 class="offer-heading">Offer Coupon</h4>
+                            <p>Enter your coupon code if you have one</p>
+                            <form action="/cart/coupon" method="POST" class="coupon-form">
+                                <input type="text" name="coupon" placeholder="Write Coupon Number here">
+                                <button type="submit" class="custom-btn">apply coupon</button>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-4 col-xs-12  pc-box">
+                        <div class="cart-total">
+                            <h3>cart total</h3>
+                            <ul class="cart-list">
+                                <li>Subtotal <span>
+                                    <% if(settings.currency == 'IND') {%> 
+                                        <span> <i class="fa fa-rupee"></i><%= cart.total-cart.discount %></span>
+                                     <% }else{ %>
+                                         <span><i class="fa fa-dollar"></i><%= cart.total-cart.discount %></span>
+                                     <% } %> 
+                                </span></li>
+                                <!-- <li>Shipping cost <span>$20.00</span></li> -->
+                            </ul>
+                            <strong>Total <span>
+                                <% if(settings.currency == 'IND') {%> 
+                                    <span> <i class="fa fa-rupee"></i><%= cart.total-cart.discount %></span>
+                                 <% }else{ %>
+                                     <span><i class="fa fa-dollar"></i><%= cart.total-cart.discount %></span>
+                                 <% } %>  
+                            </span></strong>
+                            <a href="/cart/checkout?price=<%= cart.total-cart.discount %>"><button type="submit" class="custom-btn">proceed to checkout</button></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section> <!-- Product Coupon End -->
+    </main>
+    <!-- CONTACT AREA END HERE -->
+
+   <%- include('partials/footer.ejs') %> 
+   <%- include('partials/foot.ejs') %> 
+</body>
+
+
+<!-- Mirrored from web.dotthemes.com/html/storola-demo/storola/cart.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 02 May 2020 16:11:00 GMT -->
+</html>

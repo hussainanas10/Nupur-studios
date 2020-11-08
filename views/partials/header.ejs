@@ -1,0 +1,697 @@
+
+<header>
+    <div class="user-board-area">
+    <div class="container">
+    <%- include('./messages.ejs')  %>
+        <div class="row">
+            <div class="col-md-2  hidden-sm ">
+                <div class="logo hidden-xs">
+                    <a href="/home"><img src="/images/uploads/<%= settings.logo %>" alt=""></a>
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-7  hidden-xs">
+                <div class="user-menu">
+                    <div>
+                        <ul id="nav">
+                            <li><a href="/about">ABOUT US</a>
+                            </li>
+                            <li><a href="/blog">BLOG</a>
+                            </li>
+                            <li><a href="#">HELP & SUPPORT </a>
+
+                                <li><a href="/contact">CONTACT US</a>
+                                </li>
+                                <li><a href="#">ENGLISH</a>
+                                </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- Userboard Start Here -->
+            <div class="col-md-4 col-sm-5 col-xs-12 no-padding">
+              <div class="userboard">
+                  <ul class="board-item">
+                      <li class="price-cart mr-3"><a href="/cart"><i class="fa fa-shopping-cart"></i></a>
+                      </li>
+                      <!-- <li><a href="my-account.html"><i class="fa fa-user-plus"></i>Create an Account</a></li> -->
+                      <% if(isAuth == true) {%> 
+                      <li><a href="/messages"><h4>Messages</h4></a></li>    
+                      <li><a href="/bookmarks"><h4>Saved</h4></a></li>    
+                      <li><a href="/orders"><h4>Orders</h4></a></li>   
+                      <!-- <li><a href="/logout"><h4>logout</h4></a></li>     -->
+                      <li>
+                          <a href="/dashboard" >
+                          <figure class="avatar" >
+                           <span ><%= username.substring(0,1).toUpperCase()  %></span>  
+                         </figure>
+                          </a>
+                      </li>
+                      <% }else{ %> 
+                        <li><a href="/register"><i class="fa fa-user-plus"></i>Create an Account</a></li>
+                        <li><button class="btn-filled" type="button" data-toggle="modal" data-target="#storola-modal"><i class="fa fa-user"></i>login</button></li>
+                        <!-- Modal -->
+                        <div class="modal fade" id="storola-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <div class="modal-logo">
+                                            <a href="#"><img src="/images/logo1.png" alt=""></a>
+                                        </div>
+                                    </div>
+                                    <div class="modal-body">
+                                        <h2>Great You are Here</h2>
+                                        <form action="/login" method="POST">
+                                            <div class="form-group">
+                                                <label>Email</label>
+                                                <input type="text" name="email" autocomplete="off" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Password</label>
+                                                <input type="password" name="password" autocomplete="off" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <button class="btn-filled" type="submit" value="Submit">log in</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                      <% } %> 
+
+                  </ul>
+              </div>
+          </div>
+
+        </div>
+    </div>
+    </div>
+
+    <!-- USER AREA END -->
+
+    <!-- MAIN MENU AREA START -->
+
+  <nav class="pop cus">
+      <div class="container1">
+          <ul class="menu-main">
+              <li class="underline"><a style="text-decoration: none !important;" class="text-white sizedec" href="/categories?category=Graphics+Design">Graphic &
+                      Design <i class="fa fa-angle-down" aria-hidden="true"></i></a>
+                  <div class="menu-sub">
+
+                      <div class="menu-col-1">
+                          <h4 class="menu-category font-weight-bold text-white">Logo & Brand Identity</h4>
+                          <ul>
+                              <li><a href="#">Logo Design</a>
+                              </li>
+                              <li><a href="#">Brand Style Guides</a>
+                              </li>
+                              <li><a href="#">Business Card & Stationery</a>
+                              </li>
+                          </ul>
+
+                          <h4 class="menu-category font-weight-bold text-white">Art & Illustration</h4>
+                          <ul>
+                              <li><a href="#">Illustration</a>
+                              </li>
+                              <li><a href="#">Tattoo Design</a>
+                              </li>
+                              <li><a href="#">Portraits & Caricatures</a>
+                              </li>
+                              <li><a href="#">Cartoons & Comics</a>
+                              </li>
+                              <li><a href="#">Storyboards</a>
+                              </li>
+                          </ul>
+
+                          <h4 class="menu-category font-weight-bold text-white">Gaming</h4>
+                          <ul>
+                              <li><a href="#">Game Design</a>
+                              </li>
+                              <li><a href="#">Graphics for Streamers</a>
+                              </li>
+                              <li><a href="#">Twitch Store</a>
+                              </li>
+
+                          </ul>
+
+
+                      </div>
+
+                      <div class="menu-col-1">
+                          <h4 class="menu-category font-weight-bold text-white">Visual Design</h4>
+                          <ul>
+                              <li><a href="#">Photoshop Editing</a>
+                              </li>
+                              <li><a href="#">Presentation Design</a>
+                              </li>
+                              <li><a href="#">Infographic Design</a>
+                              </li>
+                              <li><a href="#">Vector Tracing</a>
+                              </li>
+                          </ul>
+
+                          <h4 class="menu-category font-weight-bold text-white">Web & Mobile</h4>
+                          <ul>
+
+                              <li><a href="#">Web & Mobile Design</a>
+                              </li>
+                              <li><a href="#">Social Media Design</a>
+                              </li>
+                              <li><a href="#">Banner Ads</a>
+                              </li>
+                          </ul>
+                          <h4 class="menu-category font-weight-bold text-white">Architecture & Building Design</h4>
+                          <ul>
+                              <li><a href="#">Architecture & Interior Design</a>
+                              </li>
+                              <li><a href="#">Landscape Design</a>
+                              </li>
+                              <li><a href="#">Building Information Modelling</a>
+                              </li>
+                              <li><a href="#">Trade Booth Design</a>
+                              </li>
+                          </ul>
+
+
+                      </div>
+
+                      <div class="menu-col-1">
+                          <h4 class="menu-category font-weight-bold text-white">Print Design</h4>
+                          <ul>
+                              <li><a href="#">Flyer Design</a>
+                              </li>
+                              <li><a href="#">Brochure Design</a>
+                              </li>
+                              <li><a href="#">Poster Design</a>
+                              </li>
+                              <li><a href="#">Catalog Design</a>
+                              </li>
+                              <li><a href="#">Menu Design</a>
+                              </li>
+                              <li><a href="#">Postcard Design</a>
+                              </li>
+                              <li><a href="#">Invitation Design</a>
+                              </li>
+                          </ul>
+
+                          <h4 class="menu-category font-weight-bold text-white">Merchandise</h4>
+                          <ul>
+                              <li><a href="#">T-shirts & Merchandise</a>
+                              </li>
+                          </ul>
+
+
+
+                          <h4 class="menu-category font-weight-bold text-white">Misc</h4>
+                          <ul>
+                              <li><a href="#">Other</a>
+                              </li>
+                          </ul>
+
+
+
+                      </div>
+
+
+                      <div class="menu-col-1">
+                          <h4 class="menu-category font-weight-bold text-white">Packaging & Labels</h4>
+
+
+                          <ul>
+                              <li><a href="#">Book Design</a>
+                              </li>
+                              <li><a href="#">Album Cover Design</a>
+                              </li>
+                              <li><a href="#">Podcast Cover Art</a>
+                              </li>
+                              <li><a href="#">Packaging Design</a>
+                              </li>
+                              <li><a href="#">Car Wraps</a>
+                              </li>
+
+                          </ul>
+
+                          <h4 class="menu-category font-weight-bold text-white">Product & Character Design</h4>
+                          <ul>
+                              <li><a href="#">3D Models & Product Design</a>
+                              </li>
+                              <li><a href="#">Character Modelling</a>
+                              </li>
+                          </ul>
+
+
+
+
+                      </div>
+
+              </li>
+
+
+              <!-- 2 tab-->
+
+              <li class="underline"><a style="text-decoration: none !important;" class="text-white sizedec" href="/categories?category=Video+Animation">Video &
+                      animation <i class="fa fa-angle-down" aria-hidden="true"></i></a>
+                  <div class="menu-sub1">
+
+                      <div class="menu-col-2">
+
+                          <ul>
+                              <li><a href="#">Social Media Marketing</a>
+                              </li>
+                              <li><a href="#">SEO</a>
+                              </li>
+                              <li><a href="#">Marketing Strategy </a>
+                              </li>
+
+                              <li><a href="#">Public Relations</a>
+                              </li>
+                              <li><a href="#">Content Marketing</a>
+                              </li>
+                              <li><a href="#">Video Marketing</a>
+                              </li>
+
+
+
+                              <li><a href="#">Email Marketing</a>
+                              </li>
+                              <li><a href="#">Crowd Funding </a>
+                              </li>
+
+                              <li><a href="#">SEM</a>
+                              </li>
+                              <li><a href="#">Surveys</a>
+                              </li>
+                              <li><a href="#">Web analytics</a>
+                              </li>
+
+                          </ul>
+
+
+
+
+                      </div>
+
+                      <div class="menu-col-2">
+
+                          <ul>
+                              <li><a href="#">Social Media Advertising</a>
+                              </li>
+                              <li><a href="#">Local Seo</a>
+                              </li>
+                              <li><a href="#">Influencer Marketing</a>
+                              </li>
+                              <li><a href="#">E commerce Marketing</a>
+                              </li>
+
+                              <li><a href="#">Mobile Marketing Advertisement</a>
+                              </li>
+                              <li><a href="#">Podcast Marketing</a>
+                              </li>
+                              <li><a href="#">Book & ebook Marketing</a>
+                              </li>
+                              <li><a href="#">Domain Search</a>
+                              </li>
+
+
+                              <li><a href="#">Music Promotion</a>
+                              </li>
+                              <li><a href="#">Web traffic</a>
+                              </li>
+                              <li><a href="#">& other</a>
+                              </li>
+
+                          </ul>
+                      </div>
+              </li>
+
+
+
+
+              <!-- 3 tab-->
+              <li class="underline"><a style="text-decoration: none !important;" class="text-white sizedec" href="/categories?category=Digital+Marketing">Digital
+                      Marketing <i class="fa fa-angle-down" aria-hidden="true"></i></a>
+                  <div class="menu-sub1">
+
+                      <div class="menu-col-2">
+
+                          <ul>
+                              <li><a href="#">Article and blog post</a>
+                              </li>
+                              <li><a href="#">Translation</a>
+                              </li>
+                              <li><a href="#">Online Language Lessons </a>
+                              </li>
+
+                              <li><a href="#">Proofreeding & Editing</a>
+                              </li>
+                              <li><a href="#">Brand Voice and Tone</a>
+                              </li>
+                              <li><a href="#">Cover Letters</a>
+                              </li>
+
+
+
+                              <li><a href="#">Linkedin Profiles</a>
+                              </li>
+                              <li><a href="#">Podcast Writing </a>
+                              </li>
+
+                              <li><a href="#">White Paper</a>
+                              </li>
+                              <li><a href="#">Case studies</a>
+                              </li>
+
+
+                          </ul>
+
+
+
+
+                      </div>
+
+                      <div class="menu-col-2">
+
+                          <ul>
+                              <li><a href="#">Research and summaries</a>
+                              </li>
+                              <li><a href="#">Book & ebook writing</a>
+                              </li>
+                              <li><a href="#">Beta Reading</a>
+                              </li>
+                              <li><a href="#">Website Content</a>
+                              </li>
+
+                              <li><a href="#">Product Descriptions</a>
+                              </li>
+                              <li><a href="#">Ux writing</a>
+                              </li>
+                              <li><a href="#">Grant writing</a>
+                              </li>
+                              <li><a href="#">Technnical Writing</a>
+                              </li>
+
+
+                              <li><a href="#"> Business names & slogans </a>
+                              </li>
+                              <li><a href="#">Script writing</a>
+                              </li>
+                              <li><a href="#">E-mail copy</a>
+                              </li>
+
+                          </ul>
+                      </div>
+              </li>
+
+              <!-- 4 th tab-->
+              <li><a style="text-decoration: none !important;" href="/categories?category=Photo+Editing" class="underline text-white sizedec">Photo
+                      Editing <i class="fa fa-angle-down" aria-hidden="true"></i></a>
+                  <div class="menu-sub2">
+
+                      <div class="menu-col-2">
+
+                          <ul>
+                              <li><a href="#">Whiteboard & Animated Explainers</a>
+                              </li>
+                              <li><a href="#">Video Editing</a>
+                              </li>
+                              <li><a href="#">Short Video Ads</a>
+                              </li>
+
+                              <li><a href="#">Lyric & Music Videos</a>
+                              </li>
+                              <li><a href="#">Animated GIFs</a>
+                              </li>
+                              <li><a href="#">Logo Animation</a>
+                              </li>
+
+
+
+                              <li><a href="#">Intros & Outros</a>
+                              </li>
+                              <li><a href="#">App & Website Previews </a>
+                              </li>
+
+                              <li><a href="#">3D Product Animation</a>
+                              </li>
+                              <li><a href="#">Animation for Kids</a>
+                              </li>
+
+
+                          </ul>
+
+
+
+
+                      </div>
+
+                      <div class="menu-col-2">
+
+                          <ul>
+                              <li><a href="#">Animation for Streamers</a>
+                              </li>
+                              <li><a href="#">Live Action Explainers</a>
+                              </li>
+                              <li><a href="#">Spokespersons Videos</a>
+                              </li>
+                              <li><a href="#">Visual Effects</a>
+                              </li>
+
+                              <li><a href="#">Article to Video<span class="label label-danger">NEW</span></a>
+                              </li>
+                              <li><a href="#">Subtitles & Captions</a>
+                              </li>
+                              <li><a href="#">Screencasting Videos</a>
+                              </li>
+                              <li><a href="#">Slideshows Videos</a>
+                              </li>
+
+
+                              <li><a href="#">Book Trailers </a>
+                              </li>
+                              <li><a href="#">Real Estate Promos</a>
+                              </li>
+                              <li><a href="#">Product Photography</a>
+                              </li>
+
+                              <li><a href="#">Local PhotographyBETA</a>
+                              </li>
+                          </ul>
+                      </div>
+              </li>
+
+
+              <!-- 5th tab-->
+
+              <!--6th tab-->
+
+
+              <li><a style="text-decoration: none !important;" href="/categories?category=Print+Items" class="underline text-white sizedec">Print
+                      Items
+                      <i class="fa fa-angle-down" aria-hidden="true"></i></a>
+                  <div class="menu-sub3">
+
+                      <div class="menu-col-2">
+
+                          <ul>
+                              <li><a href="#">WordPress</a>
+                              </li>
+                              <li><a href="#">Website Builders & CMS</a>
+                              </li>
+                              <li><a href="#">Game Development</a>
+                              </li>
+
+                              <li><a href="#">Web Programming</a>
+                              </li>
+                              <li><a href="#">E-Commerce Development</a>
+                              </li>
+                              <li><a href="#">Mobile Apps</a>
+                              </li>
+
+
+
+                              <li><a href="#">Desktop Applications</a>
+                              </li>
+                              <li><a href="#">Support & IT</a>
+                              </li>
+
+                              <li><a href="#">Chatbots</a>
+                              </li>
+
+
+                          </ul>
+
+
+
+
+                      </div>
+
+                      <div class="menu-col-2">
+
+                          <ul>
+                              <li><a href="#">Online Coding Lessons<span class="label label-danger">NEW</span></a>
+                              </li>
+                              <li><a href="#">Cybersecurity & Data Protection</a>
+                              </li>
+                              <li><a href="#">Data Analysis & Reports</a>
+                              </li>
+                              <li><a href="#">Convert Files</a>
+                              </li>
+
+                              <li><a href="#">Databases</a>
+                              </li>
+                              <li><a href="#">User Testing</a>
+                              </li>
+                              <li><a href="#">QA</a>
+                              </li>
+                              <li><a href="#">Oth</a>
+                              </li>
+
+
+                          </ul>
+                      </div>
+              </li>
+              <!--7th-->
+
+              <!--8th-->
+              <li><a style="text-decoration: none !important;" class="text-white sizedec" href="/categories?category=Website/Tech">Website/tech <i
+                          class="fa fa-angle-down" aria-hidden="true"></i></a>
+                  <div class="menu-sub4">
+
+                      <div class="menu-col-2">
+
+                          <ul>
+                              <li><a href="#">Voice Over</a>
+                              </li>
+                              <li><a href="#">Producers & Composers</a>
+                              </li>
+                              <li><a href="#">Singers & Vocalists</a>
+                              </li>
+
+                              <li><a href="#">Mixing & Mastering</a>
+                              </li>
+                              <li><a href="#">Session Musicians</a>
+                              </li>
+                              <li><a href="#">Online Music Lessons<span class="label label-danger">NEW</span></a>
+                              </li>
+
+
+
+                              <li><a href="#">Podcast Editing</a>
+                              </li>
+                              <li><a href="#">Songwriters<span class="label label-danger">NEW</span> </a>
+                              </li>
+
+                              <li><a href="#">Audiobook Production<span class="label label-danger">NEW</span></a>
+                              </li>
+
+
+                          </ul>
+
+
+
+
+                      </div>
+
+                      <div class="menu-col-2">
+
+                          <ul>
+                              <li><a href="#">Audio Ads Production<span class="label label-danger">NEW</span></a>
+                              </li>
+                              <li><a href="#">Jingles & Intros</a>
+                              </li>
+                              <li><a href="#">DJ Drops & Tags<span class="label label-danger">NEW</span></a>
+                              </li>
+                              <li><a href="#">Dialogue Editing</a>
+                              </li>
+
+                              <li><a href="#">Music Transcription</a>
+                              </li>
+                              <li><a href="#">Sound Effects</a>
+                              </li>
+                              <li><a href="#">Vocal Tuning</a>
+                              </li>
+                              <li><a href="#">Other</a>
+                              </li>
+
+
+                          </ul>
+                      </div>
+              </li>
+              <li><a  style="text-decoration: none !important;" class="text-white sizedec " href="/categories?category=Photography">Photography <i
+                class="fa fa-angle-down" aria-hidden="true"></i></a>
+                  <div class="menu-sub4">
+
+                      <div class="menu-col-2">
+
+                          <ul>
+                              <li><a href="#">Voice Over</a>
+                              </li>
+                              <li><a href="#">Producers & Composers</a>
+                              </li>
+                              <li><a href="#">Singers & Vocalists</a>
+                              </li>
+
+                              <li><a href="#">Mixing & Mastering</a>
+                              </li>
+                              <li><a href="#">Session Musicians</a>
+                              </li>
+                              <li><a href="#">Online Music Lessons<span class="label label-danger">NEW</span></a>
+                              </li>
+
+
+
+                              <li><a href="#">Podcast Editing</a>
+                              </li>
+                              <li><a href="#">Songwriters<span class="label label-danger">NEW</span> </a>
+                              </li>
+
+                              <li><a href="#">Audiobook Production<span class="label label-danger">NEW</span></a>
+                              </li>
+
+
+                          </ul>
+
+
+
+
+                      </div>
+
+                      <div class="menu-col-2">
+
+                          <ul>
+                              <li><a href="#">Audio Ads Production<span class="label label-danger">NEW</span></a>
+                              </li>
+                              <li><a href="#">Jingles & Intros</a>
+                              </li>
+                              <li><a href="#">DJ Drops & Tags<span class="label label-danger">NEW</span></a>
+                              </li>
+                              <li><a href="#">Dialogue Editing</a>
+                              </li>
+
+                              <li><a href="#">Music Transcription</a>
+                              </li>
+                              <li><a href="#">Sound Effects</a>
+                              </li>
+                              <li><a href="#">Vocal Tuning</a>
+                              </li>
+                              <li><a href="#">Other</a>
+                              </li>
+
+
+                          </ul>
+                      </div>
+                  </div>
+              </li>
+              <!--9th-->
+              <li>
+                  <form class="search-menu search-padd">
+                      <input type="search" placeholder="Search Items">
+                      <button><i class="fa fa-search"></i></button>
+                  </form>
+              </li>
+          </ul>
+          </div>
+  </nav>
+    <!-- MOBILE-MENU AREA END -->
+</header>

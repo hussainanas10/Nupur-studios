@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Mirrored from gambolthemes.net/html-items/gambo_admin/add_product.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 05 Jun 2020 23:09:24 GMT -->
+	<%- include('../admin-partials/head.ejs')  %> 
+		<!-- froala Editor Stylesheets -->
+    <body class="sb-nav-fixed">
+		<%- include('../admin-partials/topbar.ejs') %> 
+        <div id="layoutSidenav">
+			<%- include('../admin-partials/menu.ejs') %> 
+
+            <div id="layoutSidenav_content">
+                <main>
+                    
+                    <form action="/admin/products/edit/<%= product.id %>" method="POST" enctype="multipart/form-data">
+                        <div class="row">
+                            <div class="col-8 offset-md-2">
+                                <div class="card m-b-30">
+                                    <div class="card-body">
+        
+                                        <h3 class="mt-0">Basic Details</h3>
+                                        <br>
+        
+                                        <div class="form-group row">
+                                            <label for="example-text-input" class="col-sm-2 col-form-label font-15">Title</label>
+                                            <div class="col-sm-10">
+                                                <input class="form-control" name="title" type="text" value="<%= product.title %>" id="example-text-input">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="example-text-input" class="col-sm-3 col-form-label font-15">Description</label>
+                                            <!-- <p class="text-muted m-b-15">
+                                                Bootstrap maxlength supports textarea as well as inputs. Even on old IE.
+                                            </p> -->
+                                            <div class="col-sm-10">
+                                            <textarea id="textarea" class="form-control" name="description" maxlength="225" rows="3" placeholder="Item description"><%= product.description%></textarea>
+
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <label class="col-sm-4 col-form-label font-15">Category</label>
+                                            <div class="col-sm-10">
+                                                <select name="category" class="form-control">
+                                                    <option><%= product.category %></option>
+													<% for(var i=0;i<=categories.length-1;i++) {%>
+														<option><%= categories[i].category %></option>														
+													<% } %> 
+                                                </select>
+                                            </div>
+                                        </div>
+        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-8 offset-lg-2">
+                                <div class="card m-b-30">
+                                    <div class="card-body">
+        
+                                        <h3 class="mt-0">Scope & Pricing</h3>
+                                        <!-- <p class="sub-title">Add <code>.table-bordered</code> for
+                                            borders on all sides of the table and cells.
+                                        </p> -->
+                                        
+                                        <div class="table-responsive">
+                                            <table class="table table-bordered mb-0">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="colspan-2">#</th>
+                                                        <th class="font-15">Basic</th>
+                                                        <th class="font-15">Standard</th>
+                                                        <th class="font-15">Premium</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <th></th>
+                                                        <td>
+                                                        <textarea id="textarea" class="form-control" name="basicDescription" maxlength="225" rows="2" placeholder="Item description"><%= product.basicDescription%></textarea>
+                                                        </td>
+                                                        <td>
+                                                        <textarea id="textarea" class="form-control" name="standardDescription" maxlength="225" rows="2" placeholder="Item description"><%= product.standardDescription %></textarea>
+                                                        </td>
+                                                        <td>
+                                                        <textarea id="textarea" class="form-control" name="premiumDescription" maxlength="225" rows="2" placeholder="Item description"><%= product.premiumDescription %></textarea>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th class="">
+                                                           
+                                                        </th>
+                                                        <td>
+                                                            <select name="basicDeliveryTime" class="form-control" required="true">
+                                                                <option><%= product.basicDeliveryTime %></option>
+                                                                <% for(var i=1;i<=29;i++){ %>
+                                                                <option><%= i %> Days Delivery</option>
+                                                                <% } %>  
+                                                            </select>
+                                                        </td>
+                                                        <td>
+                                                            <select name="standardDeliveryTime" class="form-control" required="true">
+                                                                <option><%= product.standardDeliveryTime %></option>
+                                                                <% for(var i=1;i<=29;i++){ %>
+                                                                <option><%= i %> Days Delivery</option>
+                                                                <% } %>  
+                                                            </select>
+                                                        </td>
+                                                        <td>
+                                                            <select name="premiumDeliveryTime" class="form-control" required="true">
+                                                                <option><%= product.premiumDeliveryTime%></option>
+                                                                <% for(var i=1;i<=29;i++){ %>
+                                                                <option><%= i %> Days Delivery</option>
+                                                                <% } %>  
+                                                            </select>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th class="font-15">Revisions</th>
+                                                        <td>
+                                                         <select name="basicRevisions" class="form-control" required="true">
+                                                            <option><%= product.basicRevisions%></option>
+                                                            <% for(var i=0;i<=9;i++){ %>
+                                                            <option><%= i %></option>
+                                                            <% } %> 
+                                                            <option>Unlimited</option>
+                                                        </select>
+                                                        </td>
+                                                        <td>
+                                                            <select name="standardRevisions" class="form-control" required="true">
+                                                                <option><%= product.standardRevisions %></option>
+                                                                <% for(var i=0;i<=9;i++){ %>
+                                                                <option><%= i %> </option>
+                                                                <% } %> 
+                                                                <option>Unlimited</option>
+                                                            </select>
+                                                        </td>
+                                                        <td>
+                                                            <select name="premiumRevisions" class="form-control" required="true">
+                                                                <option><%= product.premiumRevisions %></option>
+                                                                <% for(var i=0;i<=9;i++){ %>
+                                                                <option><%= i %></option>
+                                                                <% } %> 
+                                                                <option>Unlimited</option>
+                                                            </select>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <div class="form-group">
+                                                        <th class="font-15">
+                                                            # of initial concepts included
+                                                        </th>
+                                                        <td>
+                                                            <select name="basicConcepts" class="form-control" required="true">
+                                                                <option><%= product.basicConcepts %> </option>
+                                                                <% for(var i=0;i<=5;i++){ %>
+                                                                <option><%= i %></option>
+                                                                <% } %> 
+                                                            </select>
+                                                        </td>
+                                                        <td>
+                                                            <select name="standardConcepts" class="form-control" required="true">
+                                                                <option><%= product.standardConcepts  %> </option>
+                                                                <% for(var i=0;i<=5;i++){ %>
+                                                                <option><%= i %></option>
+                                                                <% } %> 
+                                                            </select>
+                                                        </td>
+                                                        <td>
+                                                            <select name="premiumConcepts" class="form-control" required="true">
+                                                                <option><%= product.premiumConcepts  %> </option>
+                                                                <% for(var i=0;i<=5;i++){ %>
+                                                                <option><%= i %></option>
+                                                                <% } %> 
+                                                            </select>
+                                                        </td>
+                                                    </div>
+                                                    </tr>
+                                                    <tr>
+                                                        <div class="form-group">
+                                                        <th class="font-15">
+                                                           Source File 
+                                                        </th>
+                                                        <td>
+                                                           <div class="text-center custom-control custom-checkbox">
+                                                            <input type="checkbox" name="basicSource" id="customCheck1" data-parsley-multiple="groups"
+                                                            data-parsley-mincheck="2">
+                                                           </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="text-center custom-control custom-checkbox" >
+                                                                <input type="checkbox" name="standardSource"  id="customCheck1" data-parsley-multiple="groups"
+                                                                data-parsley-mincheck="2">
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="text-center custom-control custom-checkbox" >
+                                                                <input type="checkbox" name="premiumSource" id="customCheck1" data-parsley-multiple="groups"
+                                                                data-parsley-mincheck="2">
+                                                            </div>
+                                                        </td>
+                                                    </div>
+                                                    </tr>
+                                                    <tr>
+                                                        <div class="form-group">
+                                                        <th class="font-15">
+                                                            Logo Transparency
+                                                        </th>
+                                                        <td>
+                                                           <div class="text-center custom-control custom-checkbox">
+                                                            <input type="checkbox" name="basicLogo"id="customCheck1" data-parsley-multiple="groups"
+                                                            data-parsley-mincheck="2">
+                                                           </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="text-center custom-control custom-checkbox" >
+                                                                <input type="checkbox" name="standardLogo"  id="customCheck1" data-parsley-multiple="groups"
+                                                                data-parsley-mincheck="2">
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="text-center custom-control custom-checkbox" >
+                                                                <input type="checkbox" name="premiumLogo" id="customCheck1" data-parsley-multiple="groups"
+                                                                data-parsley-mincheck="2">
+                                                            </div>
+                                                        </td>
+                                                    </div>
+                                                    </tr>
+                                                    <tr>
+                                                        <div class="form-group">
+                                                        <th class="font-15">
+                                                            High Resolutions
+                                                        </th>
+                                                        <td>
+                                                           <div class="text-center custom-control custom-checkbox">
+                                                            <input type="checkbox" name="basicResolutions"  id="customCheck1" data-parsley-multiple="groups"
+                                                            data-parsley-mincheck="2">
+                                                           </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="text-center custom-control custom-checkbox" >
+                                                                <input type="checkbox" name="standardResolutions" id="customCheck1" data-parsley-multiple="groups"
+                                                                data-parsley-mincheck="2">
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="text-center custom-control custom-checkbox" >
+                                                                <input type="checkbox" name="premiumResolutions" id="customCheck1" data-parsley-multiple="groups"
+                                                                data-parsley-mincheck="2">
+                                                            </div>
+                                                        </td>
+                                                    </div>
+                                                    </tr>
+                                                    <tr>
+                                                        <div class="form-group">
+                                                        <th class="font-15">
+                                                            3D Mockup
+                                                        </th>
+                                                        <td>
+                                                           <div class="text-center custom-control custom-checkbox">
+                                                            <input type="checkbox" name="basicMockup"id="customCheck1" data-parsley-multiple="groups"
+                                                            data-parsley-mincheck="2">
+                                                           </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="text-center custom-control custom-checkbox" >
+                                                                <input type="checkbox" name="standardMockup" id="customCheck1" data-parsley-multiple="groups"
+                                                                data-parsley-mincheck="2">
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="text-center custom-control custom-checkbox" >
+                                                                <input type="checkbox" name="premiumMockup" id="customCheck1" data-parsley-multiple="groups"
+                                                                data-parsley-mincheck="2">
+                                                            </div>
+                                                        </td>
+                                                    </div>
+                                                    </tr>
+                                                    <tr>
+                                                        <div class="form-group">
+                                                        <th class="font-15">
+                                                            Stationary Designs
+                                                        </th>
+                                                        <td>
+                                                           <div class="text-center custom-control custom-checkbox">
+                                                            <input type="checkbox" name="basicDesigns" id="customCheck1" data-parsley-multiple="groups"
+                                                            data-parsley-mincheck="2">
+                                                           </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="text-center custom-control custom-checkbox" >
+                                                                <input type="checkbox" name="standardDesigns"  id="customCheck1" data-parsley-multiple="groups"
+                                                                data-parsley-mincheck="2">
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="text-center custom-control custom-checkbox" >
+                                                                <input type="checkbox" name="premiumDesigns"  id="customCheck1" data-parsley-multiple="groups"
+                                                                data-parsley-mincheck="2">
+                                                            </div>
+                                                        </td>
+                                                    </div>
+                                                    </tr>
+                                                    <tr>
+                                                        <div class="form-group">
+                                                        <th class="font-15">
+                                                            Price
+                                                        </th>
+                                                        <td>
+                                                            <input data-parsley-type="number" type="number"
+                                                            class="form-control" name="basicPrice" value="<%= product.basicPrice %>" placeholder="0" required
+                                                            placeholder=""/>
+                                                        </td>
+                                                        <td>
+                                                            <input data-parsley-type="number" type="number"
+                                                            class="form-control" name="standardPrice" value="<%= product.standardPrice %>" placeholder="0" required
+                                                            placeholder=""/>
+                                                        </td>
+                                                        <td>
+                                                            <input data-parsley-type="number" type="number"
+                                                            class="form-control" name="premiumPrice" value="<%= product.premiumPrice %>" placeholder="0" required
+                                                            placeholder=""/>
+                                                        </td>
+                                                    </div>
+                                                    </tr>
+                                                    
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> <!-- end col -->
+                        </div>
+                            
+                        <div class="row">
+                            <div class="col-8 offset-md-2">
+                                <div class="card m-b-30">
+                                    <div class="card-body">
+        
+                                        <h4 class="mt-0 header-title">Product Images</h4>
+                                        <br>
+                                        <div class="m-b-30">
+                                                <div class="fallback">
+                                                    <input type="file" accept="image/*" name="images" multiple/>
+                                                </div>
+                                        </div>
+        
+                                    </div>
+                                </div>
+                            </div> 
+                        </div>
+
+                        <div class="button-items col-4 offset-4 mt-4">
+                            <button type="submit"  class="btn btn-primary btn-lg btn-block waves-effect waves-light">Submit</button>
+                        </div>
+                        </form>
+                </main>
+
+            </div>
+        </div>
+		
+		<!-- Javascripts -->
+        <script src="/js/jquery-3.4.1.min.js"></script>
+        <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <script src="/js/scripts.js"></script>
+		
+
+		<script>
+			(function () {
+			  new FroalaEditor("#edit", {
+				zIndex: 10
+			  })
+			})()
+		</script>
+		
+    </body>
+
+<!-- Mirrored from gambolthemes.net/html-items/gambo_admin/add_product.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 05 Jun 2020 23:09:33 GMT -->
+</html>

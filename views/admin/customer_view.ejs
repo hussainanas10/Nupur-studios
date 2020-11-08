@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<%- include('../admin-partials/head.ejs')  %> 
+		<!-- froala Editor Stylesheets -->
+    <body class="sb-nav-fixed">
+		<%- include('../admin-partials/topbar.ejs') %> 
+        <div id="layoutSidenav">
+			<%- include('../admin-partials/menu.ejs') %> 
+            <div id="layoutSidenav_content">
+                <main>
+                    <div class="container-fluid">
+                        <h2 class="mt-30 page-title">Users</h2>
+                        <ol class="breadcrumb mb-30">
+                            <li class="breadcrumb-item"><a href="/admin/dashboard">Dashboard</a></li>
+                            <li class="breadcrumb-item"><a href="/admin/customers">Users</a></li>
+                            <li class="breadcrumb-item active">User View</li>
+						</ol> 
+                        <div class="row">
+							<div class="col-lg-5 col-md-6">
+								<div class="card card-static-2 mb-30">
+									<div class="card-body-table">
+										<div class="shopowner-content-left text-center pd-20">
+											<div class="customer_img">
+												<img src="/images/avatar/img-1.jpg" alt="">
+											</div>
+											<div class="shopowner-dt-left mt-4">
+												<h4><%= user.name %></h4>
+												<span>User</span>
+											</div>
+											<ul class="product-dt-purchases">
+												<li>
+													<div class="product-status">
+														Orders <span class="badge-item-2 badge-status"><%= user.orders.length %></span>
+													</div>
+												</li>
+												<li>
+													<div class="product-status">
+														Messages <span class="badge-item-2 badge-status"><%= user.messages.length %></span>
+													</div>
+												</li>
+											</ul>
+											<div class="shopowner-dts">
+												<div class="shopowner-dt-list">
+													<span class="left-dt">Name</span>
+													<span class="right-dt"><%= user.name %></span>
+												</div>
+												<div class="shopowner-dt-list">
+													<span class="left-dt">Username</span>
+													<span class="right-dt"><%= user.username %></span>
+												</div>
+												<div class="shopowner-dt-list">
+													<span class="left-dt">Email</span>
+													<span class="right-dt"><%= user.email %></span>
+												</div>
+												<div class="shopowner-dt-list">
+													<span class="left-dt">Phone</span>
+													<span class="right-dt"><%= user.phone %></span>
+												</div>
+												<div class="shopowner-dt-list">
+													<span class="left-dt">Address</span>
+													<span class="right-dt"><%= user.address  %></span>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+                        </div>
+                    </div>
+                </main>
+            </div>
+        </div>
+		
+		<!-- Javascripts -->
+        <script src="/js/jquery-3.4.1.min.js"></script>
+        <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <script src="/js/scripts.js"></script>
+		
+    </body>
+
+<!-- Mirrored from gambolthemes.net/html-items/gambo_admin/customer_view.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 05 Jun 2020 23:14:33 GMT -->
+</html>

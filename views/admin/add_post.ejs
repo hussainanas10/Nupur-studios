@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<%- include('../admin-partials/head.ejs') %> 
+
+    <body class="sb-nav-fixed">
+        <%- include('../admin-partials/topbar.ejs')  %> 
+        <div id="layoutSidenav">
+			<%- include('../admin-partials/menu.ejs')  %> 
+            <div id="layoutSidenav_content">
+                <main>
+                    <div class="container-fluid">
+                        <h2 class="mt-30 page-title">Posts</h2>
+                        <ol class="breadcrumb mb-30">
+                            <li class="breadcrumb-item"><a href="/admin/dashboard">Dashboard</a></li>
+                            <li class="breadcrumb-item"><a href="/admin/posts">Posts</a></li>
+                            <li class="breadcrumb-item active">Add New</li>
+                        </ol>
+					<form autocomplete="off" action="/admin/add-post" method="post" enctype="multipart/form-data">
+
+						<div class="row">
+							<div class="col-lg-9 col-md-8">
+								<div class="card card-static-2 mb-30">
+									<div class="card-title-2">
+										<h4>Blog Content</h4>
+									</div>
+									<div class="card-body-table">
+										<div class="post-form">
+											<div class="form-group">
+												<label class="form-label">Title*</label>
+												<input type="text" class="form-control" name="title" placeholder="News title here">
+											</div>
+											<div class="form-group">
+												<label class="form-label">Author name*</label>
+												<input type="text" class="form-control" name="author" placeholder="author" >
+											</div>
+											<div class="form-group">
+												<label class="form-label">Content*</label>
+												<div class="card card-editor">
+													<div class="content-editor">
+														<textarea name="content" class="form-control" rows="8"></textarea>
+													</div>
+												</div>
+											</div>
+											<div class="form-group">
+												<label class="form-label">Blog Image*</label>
+												<input class="form-control" type="file" accept="image/*" name="image" id="file">
+												<!-- <label for="file">Upload Image</label> -->
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-lg-3 col-md-4">
+								<div class="card card-static-2 mb-30">
+									<div class="card-title-2">
+										<h4>Category</h4>
+									</div>
+									<div class="card-body-table">
+										<div class="news-content-right pd-20">
+											<div class="form-group">
+												<select id="categeory" name="category" class="form-control">
+													<option>--All Category--</option>
+													<% for(var i=0;i<=categories.length-1;i++) {%> 
+													<option><%= categories[i].category %></option>
+													<% } %> 
+												</select>
+											</div>
+											<div class="form-group">
+												<label class="form-label">Tags*</label>
+												<input type="text" class="form-control" name="tags" placeholder="Enter tag">
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="card card-static-2 mb-30">
+									<div class="card-title-2">
+										<h4>Featured Image</h4>
+									</div>
+									<div class="card-body-table">
+										<div class="news-content-right pd-20 text-center">	
+											<div class="fea-img">
+												<img src="/images/featured-img.jpg" alt="">
+												<div class="">													
+													<input class="form-control" type="file" accept="image/*" name="cover" id="file">
+													<!-- <label for="file">Upload Image</label> -->
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-lg-3 col-md-4">
+								<button class="save-btn  hover-btn "  type="submit">Add New Category</button>
+							</div>
+
+                        </div>
+					</form>	
+
+					</div>
+                </main>
+            </div>
+        </div>
+		
+		<!-- Javascripts -->
+        <script src="/js/jquery-3.4.1.min.js"></script>
+        <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <script src="/js/scripts.js"></script>
+		
+		<!-- froala Editor Javascripts -->
+		<script type="text/javascript" src="../../../cdnjs.cloudflare.com/ajax/libs/codemirror/5.3.0/codemirror.min.js"></script>
+		<script type="text/javascript" src="../../../cdnjs.cloudflare.com/ajax/libs/codemirror/5.3.0/mode/xml/xml.min.js"></script>
+
+    </body>
+
+<!-- Mirrored from gambolthemes.net/html-items/gambo_admin/add_post.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 05 Jun 2020 23:09:12 GMT -->
+</html>

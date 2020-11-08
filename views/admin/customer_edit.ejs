@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<%- include('../admin-partials/head.ejs')  %> 
+		<!-- froala Editor Stylesheets -->
+    <body class="sb-nav-fixed">
+		<%- include('../admin-partials/topbar.ejs') %> 
+        <div id="layoutSidenav">
+			<%- include('../admin-partials/menu.ejs') %> 
+            <div id="layoutSidenav_content">
+                <main>
+                    <div class="container-fluid">
+                        <h2 class="mt-30 page-title">Users</h2>
+                        <ol class="breadcrumb mb-30">
+                            <li class="breadcrumb-item"><a href="/admin/dashboard">Dashboard</a></li>
+                            <li class="breadcrumb-item"><a href="/admin/customers">Users</a></li>
+                            <li class="breadcrumb-item active">User Edit</li>
+                        </ol>
+                        <div class="row">
+							<div class="col-lg-6 col-md-6">
+								<div class="card card-static-2 mb-30">
+									<div class="card-title-2">
+										<h4>Edit User</h4>
+									</div>
+									<div class="card-body-table">
+									<form action="/admin/customers/edit/<%= user.id %>" method="post"> 
+										<div class="news-content-right pd-20">
+											<div class="form-group">
+												<label class="form-label">First Name*</label>
+												<input type="text" class="form-control" value="<%= user.firstName %>" name="firstName" placeholder="<%= user.firstName %>">
+											</div>
+											<div class="form-group">
+												<label class="form-label">Last Name*</label>
+												<input type="text" class="form-control" value="<%= user.lastName %>" name="lastName" placeholder="<%= user.lastName %>">
+											</div>
+											<div class="form-group">
+												<label class="form-label">Username*</label>
+												<input type="text" class="form-control" value="<%= user.username  %>" name="username" placeholder="<%= user.username %>">
+											</div>
+											<div class="form-group">
+												<label class="form-label">Email*</label>
+												<input type="email" class="form-control" value="<%= user.email %>" name="email" placeholder="<%= user.email %>">
+											</div>
+											<div class="form-group">
+												<label class="form-label">Phone*</label>
+												<input type="text" class="form-control" value="<%= user.phone %>" name="phone" placeholder="<%= user.phone %>">
+											</div>
+											<div class="form-group">
+												<label class="form-label">City*</label>
+												<input type="text" class="form-control" value="<%= user.city %>" name="city" placeholder="<%= user.city %>">
+											</div>
+											<div class="form-group">
+												<label class="form-label">Country*</label>
+												<input type="text" class="form-control" value="<%= user.country %>" name="country" placeholder="<%= user.country %>">
+											</div>
+											<div class="form-group">
+												<label class="form-label">About User*</label>
+												<input type="text" class="form-control" value="<%= user.aboutme %>" name="aboutme" placeholder="<%= user.aboutme %>">
+											</div>
+											
+											<button class="save-btn hover-btn" type="submit">Save Changes</button>
+										</div> 
+									</form>
+									</div>
+								</div>
+							</div>
+                        </div>
+                    </div>
+                </main>
+                <footer class="py-4 bg-footer mt-auto">
+                    <div class="container-fluid">
+                        <div class="d-flex align-items-center justify-content-between small">
+                            <div class="text-muted-1">© 2020 <b>Gambo Supermarket</b>. by <a href="https://themeforest.net/user/gambolthemes">Gambolthemes</a></div>
+                            <div class="footer-links">
+                                <a href="../gambo_supermarket_demo/privacy_policy.html">Privacy Policy</a>
+                                <a href="../gambo_supermarket_demo/term_and_conditions.html">Terms &amp; Conditions</a>
+                            </div>
+                        </div>
+                    </div>
+                </footer>
+            </div>
+        </div>
+		
+		<!-- Javascripts -->
+        <script src="js/jquery-3.4.1.min.js"></script>
+        <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <script src="js/scripts.js"></script>
+		
+    </body>
+
+<!-- Mirrored from gambolthemes.net/html-items/gambo_admin/customer_edit.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 05 Jun 2020 23:14:33 GMT -->
+</html>

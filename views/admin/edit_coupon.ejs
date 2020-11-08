@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<%- include('../admin-partials/head.ejs')  %> 
+
+    <body class="sb-nav-fixed">
+		<%- include('../admin-partials/topbar.ejs') %> 
+        <div id="layoutSidenav">
+			<%- include('../admin-partials/menu.ejs') %> 
+            <div id="layoutSidenav_content">
+                <main>
+                    <div class="container-fluid">
+                        <h2 class="mt-30 page-title">Offers</h2>
+                        <ol class="breadcrumb mb-30">
+                            <li class="breadcrumb-item"><a href="/admin/dashboard">Dashboard</a></li>
+                            <li class="breadcrumb-item"><a href="/admin/coupons">Coupons</a></li>
+                            <li class="breadcrumb-item active">Edit Coupon</li>
+                        </ol>
+                        <div class="row">
+							<div class="col-lg-6 col-md-6">
+								<div class="card card-static-2 mb-30">
+									<div class="card-title-2">
+										<h4>Edit Coupon</h4>
+									</div>
+									<div class="card-body-table">
+									<form action="/admin/coupons/edit/<%= coupon.id %>" method="POST"> 
+										<div class="news-content-right pd-20">
+											<div class="form-group">
+												<label class="form-label">Name*</label>
+												<input type="text" name="name" class="form-control" value="<%= coupon.name %>" placeholder="Coupon Title">
+											</div>
+											<div class="form-group">
+												<label class="form-label">Code*</label>
+												<input type="text" name="code" class="form-control" value="<%= coupon.code %>" placeholder="Coupon Code">
+											</div>
+											<div class="form-group">
+												<label class="form-label">Discount Type*</label>
+												<select class="form-control select" name="type">
+													<option selected><%= coupon.type %></option>
+													<option>Fixed</option>
+													<option>Percent</option>
+												</select>
+											</div>
+											<div class="form-group">
+												<label class="form-label">Value*</label>
+												<input type="number" name="value" value="<%= coupon.value %>" class="form-control" placeholder="$0">
+											</div>
+											<div class="form-group">
+												<label class="form-label">Status*</label>
+												<select id="status" name="status" class="form-control">
+													<option selected><%= coupon.status %></option>
+													<option>Active</option>
+													<option>Inactive</option>
+												</select>
+											</div>
+											<div class="form-group">
+												<label class="form-label">Start Date*</label>
+												<input type="date" name="startDate" value="<%= coupon.startDate %>" class="form-control" >
+											</div>
+											<div class="form-group">
+												<label class="form-label">End Date*</label>
+												<input type="date" name="endDate" value="<%= coupon.endDate %>" class="form-control">
+											</div>
+											<button class="save-btn hover-btn" type="submit">Edit Coupon</button>
+										</div> 
+									</form>
+									</div>
+								</div>
+							</div>
+                        </div>
+                    </div>
+                </main>
+            </div>
+        </div>
+		
+		<!-- Javascripts -->
+		<script type="text/javascript">
+			tail.select(".select");
+
+		</script>
+        <script src="/js/jquery-3.4.1.min.js"></script>
+        <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <script src="/vendor/tail.select/js/tail.select-full.min.js"></script>
+        <script src="/js/scripts.js"></script>
+        
+
+    </body>
+
+<!-- Mirrored from gambolthemes.net/html-items/gambo_admin/add_offer.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 05 Jun 2020 23:14:34 GMT -->
+</html>

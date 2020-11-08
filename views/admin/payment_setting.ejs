@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<%- include('../admin-partials/head.ejs')  %> 
+		<!-- froala Editor Stylesheets -->
+    <body class="sb-nav-fixed">
+		<%- include('../admin-partials/topbar.ejs') %> 
+        <div id="layoutSidenav">
+			<%- include('../admin-partials/menu.ejs') %> 
+            <div id="layoutSidenav_content">
+                <main>
+                    <div class="container-fluid">
+                        <h2 class="mt-30 page-title">Payment Setting</h2>
+                        <ol class="breadcrumb mb-30">
+                            <li class="breadcrumb-item"><a href="/admin/dashboard">Dashboard</a></li>
+                            <li class="breadcrumb-item active">Payment Setting</li>
+                        </ol>
+                        <div class="row">
+							<!-- <div class="col-lg-4 col-md-6">
+								<div class="left-side-tabs">
+									<div class="dashboard-left-links">
+										<a href="payment_setting.html" class="user-item active"><i class="fab fa-paypal"></i>Paypal</a>
+										<a href="payment_setting_stripe.html" class="user-item"><i class="fab fa-stripe"></i>Stripe</a>
+									</div>
+								</div>
+							</div> -->
+							<div class="col-lg-8 col-md-6 offset-2">
+								<div class="card card-static-2 mb-30">
+									<div class="card-title-2">
+										<h4>Paytm Payment Setting</h4> 
+									</div>
+									<div class="card-body-table">
+										<div class="news-content-right pd-20">
+										<form autocomplete="off" action="/admin/payment-setting" method="post">
+											<div class="row">
+												<div class="col-lg-12">
+													<div class="form-group">
+														<label class="form-label">Merchant Id*</label>
+														<input type="text" class="form-control" name="merchantId" value="<%= setting.merchantId %>" placeholder="Merchant Id">
+													</div>
+													<div class="form-group">
+														<label class="form-label">Merchant Key*</label>
+														<input type="text" class="form-control" name="merchantKey" value="<%= setting.merchantKey %>" placeholder="Merchant Key">
+													</div>
+													<div class="form-group">
+														<label class="form-label">Website*</label>
+														<input type="text" class="form-control" name="website" value="<%= setting.website %>" placeholder="Website">
+													</div>
+													<div class="form-group">
+														<label class="form-label">Industry Type*</label>
+														<input type="text" class="form-control" name="industryType" value="<%= setting.industryType %>" placeholder="Industry Type">
+													</div>
+													<div class="form-group">
+														<label class="form-label">Channel Id*</label>
+														<input type="text" class="form-control" name="channelId" value="<%= setting.channelId %>" placeholder="Channel Id">
+													</div>
+													<div class="form-group">
+														<label class="form-label">Transaction Url*</label>
+														<input type="text" class="form-control" name="transactionUrl" value="<%= setting.transactionUrl %>" placeholder="Transaction Url">
+													</div>
+													<div class="form-group">
+														<label class="form-label">Transaction Status Url*</label>
+														<input type="text" class="form-control" name="transactionStatusUrl" value="<%= setting.transactionStatusUrl %>" placeholder="Transaction Status Url">
+													</div>
+													<div class="form-group">
+														<label class="form-label">Callback Url*</label>
+														<input type="text" class="form-control" name="callbackUrl" value="<%= setting.callbackUrl %>" placeholder="Callback Url">
+													</div>
+													<div class="form-group">
+														<label class="form-label">Website Currency*</label>
+														<select class="form-control" name="currency">
+														<option><%= setting.currency %></option>	
+														<option>USD</option>
+														<option>IND</option>
+														</select> 
+													</div>																				
+													<button class="save-btn hover-btn" type="submit">Save Changes</button>
+												</div>
+											</div>
+										</form>
+										</div>
+									</div>
+								</div>
+							</div>
+                        </div>
+                    </div>
+                </main>
+            </div>
+        </div>
+		
+		<!-- Javascripts -->
+        <script src="/js/jquery-3.4.1.min.js"></script>
+        <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <script src="/js/scripts.js"></script>
+		
+    </body>
+
+<!-- Mirrored from gambolthemes.net/html-items/gambo_admin/payment_setting.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 05 Jun 2020 23:09:41 GMT -->
+</html>

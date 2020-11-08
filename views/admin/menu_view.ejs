@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Mirrored from gambolthemes.net/html-items/gambo_admin/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 05 Jun 2020 23:05:42 GMT -->
+<%- include('../admin-partials/head.ejs') %> 
+<script>
+    $(function() {
+        
+        $('.list-group-item').on('click', function() {
+          $('.glyphicon', this)
+            .toggleClass('glyphicon-chevron-right')
+            .toggleClass('glyphicon-chevron-down');
+        });
+      
+      });
+</script>
+    <body class="sb-nav-fixed">
+		<%- include('../admin-partials/topbar.ejs')  %> 
+        <div id="layoutSidenav">
+			<%- include('../admin-partials/menu.ejs')  %> 
+            <div id="layoutSidenav_content">
+                <main>
+                    <div class="container-fluid">
+                        <h2 class="mt-30 page-title">Menu</h2>
+                        <ol class="breadcrumb mb-30">
+                            <li class="breadcrumb-item"><a href="/admin/dashboard">Dashboard</a></li>
+                            <li class="breadcrumb-item ">Menu</li>
+                            <li class="breadcrumb-item active">Edit Menu</li>
+                        </ol>
+                        <div class="row">
+
+                            <div class="col-5">
+                                <div class="btn-group pull-right m-15 pb-4">
+                                    <a href="/admin/menu/<%= menu.id %>/create" type="submit" class="add-btn hover-btn">
+                                        Create Menu Item
+                                    </a>
+                                </div>          
+                                <div class="just-padding">
+                                    <div class="list-group list-group-root well">
+  
+                                      <a href="#" style="color: black;" class="list-group-item">Root</a>
+                                      <% for(var i=0;i<=menu.menuItems.length-1;i++) {%> 
+                                      <div class="list-group">                                
+                                        <a href="#" style="color: black;" class="list-group-item"><%= menu.menuItems[i].name %></a>
+                                        <% for(var j=0;j<=menu.menuItems[i].items.length-1;j++) {%>  
+                                        <div class="list-group">
+                                          <a href="#" style="color: black;" class="list-group-item"><%= menu.menuItems[i].items[j].name %></a>
+                                        </div>
+                                        <% } %> 
+                                      </div>
+                                    <% } %> 
+                                     
+                                    </div>
+                                      
+                                </div>
+                            </div>
+                            <div class="col-5 offset-1">
+                                <div class="just-padding ">
+                                    <form action="/admin/menu/<%= menu.id %>" method="POST">
+                                        <div class="form-group row">
+                                            <label for="example-text-input" class="col-sm-4 custom-form-label">Name</label>
+                                            <div class="col-sm-8">
+                                                <input class="form-control" name="name" type="text" value="<%= menu.name %>" placeholder="Category">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="example-text-input" class="col-sm-4 custom-form-label">Status</label>
+                                            <div class="checkbox col-sm-8">
+                                                <label><input type="checkbox" name="status" <% if(menu.status) %> >Enable the menu</label>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="offset-4 col-8">
+                                                <button class="save-btn hover-btn" type="submit">Save</button>
+                                            </div>
+                                        </div>
+    
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </main>
+
+            </div>
+        </div>
+        <script src="/js/jquery-3.4.1.min.js"></script>
+        <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <script src="/js/scripts.js"></script>
+<!--      
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>   -->
+    </body>
+
+<!-- Mirrored from gambolthemes.net/html-items/gambo_admin/menu.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 05 Jun 2020 23:09:39 GMT -->
+</html>

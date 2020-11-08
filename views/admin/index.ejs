@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Mirrored from gambolthemes.net/html-items/gambo_admin/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 05 Jun 2020 23:05:42 GMT -->
+<%- include('../admin-partials/head.ejs') %> 
+
+    <body class="sb-nav-fixed">
+		<%- include('../admin-partials/topbar.ejs')  %> 
+        <div id="layoutSidenav">
+			<%- include('../admin-partials/menu.ejs')  %> 
+            <div id="layoutSidenav_content">
+                <main>
+                    <div class="container-fluid">
+                        <h2 class="mt-30 page-title">Dashboard</h2>
+                        <ol class="breadcrumb mb-30">
+                            <li class="breadcrumb-item active">Dashboard</li>
+                        </ol>
+                        <div class="row">
+                            <div class="col-xl-3 col-md-6">
+                                <div class="dashboard-report-card purple">
+									<div class="card-content">
+										<span class="card-title">Total Users</span>
+										<span class="card-count"><%= users.length %> </span>
+									</div>
+									<div class="card-media">
+										<i class="fab fa-rev"></i>
+									</div>
+                                </div>
+                            </div>
+                            <div class="col-xl-3 col-md-6">
+								<div class="dashboard-report-card red">
+									<div class="card-content">
+										<span class="card-title">Total Products</span>
+										<span class="card-count"><%= products.length %> </span>
+									</div>
+									<div class="card-media">
+										<i class="far fa-times-circle"></i>
+									</div>
+                                </div>
+                            </div>
+                            <div class="col-xl-3 col-md-6">
+                                <div class="dashboard-report-card info">
+									<div class="card-content">
+										<span class="card-title">Total Orders</span>
+										<span class="card-count"><%= orderNos %></span>
+									</div>
+									<div class="card-media">
+										<i class="fas fa-sync-alt rpt_icon"></i>
+									</div>
+                                </div>
+                            </div>
+                            <div class="col-xl-3 col-md-6">
+								<div class="dashboard-report-card success">
+									<div class="card-content">
+										<span class="card-title">Today Income</span>
+										<span class="card-count">
+											<% if(settings.currency == 'IND') {%> 
+												<span> <i class="fa fa-rupee" style="color:white"></i><%= revenue %></span>
+											 <% }else{ %>
+												 <span><i class="fa fa-dollar" style="color:white"></i><%= revenue %></span>
+											 <% } %>
+										</span>
+									</div>
+									<div class="card-media">
+										<i class="fas fa-money-bill rpt_icon"></i>
+									</div>
+                                </div>
+                            </div>
+
+							<div class="col-lg-12 col-md-12">
+								<div class="card card-static-2 mb-30">
+									<div class="card-title-2">
+										<h4>Recent Orders</h4>
+									</div>
+									<div class="card-body-table">
+										<div class="table-responsive">
+											<table class="table ucp-table table-hover" id="ordersMonth">
+												<thead>
+													<tr>
+														<th>OrderId</th>
+														<th>Product Title</th>
+														<th>Category</th>
+														<th>Price</th>
+														<th>Quantity</th>
+														<th>Plan</th>
+													</tr>
+												</thead>
+												<tbody>
+													<% for(var i=0;i<=orders.length-1;i++) {%>
+														<% for(var j=0;j<=orders[i].items.length-1;j++) { %> 
+													<tr>
+														<td>ORDER<%= orders[i].items[j].orderId %></td>
+														<td><%= orders[i].items[j].productId.title %></td>
+														<td><%= orders[i].items[j].productId.category %></td>
+														<td>
+															<% if(orders[i].items[j].plan == "basic") {%>
+																<% if(settings.currency == 'IND') {%> 
+																	<span> <i class="fa fa-rupee"></i><%= orders[i].items[j].productId.basicPrice*orders[i].items[j].qty %> </span>
+																 <% }else{ %>
+																	 <span><i class="fa fa-dollar"></i><%= orders[i].items[j].productId.basicPrice*orders[i].items[j].qty %> </span>
+																 <% } %> 
+															<% }else if(orders[i].items[j].plan == "standard"){ %>
+																<% if(settings.currency == 'IND') {%> 
+																	<span> <i class="fa fa-rupee"></i><%= orders[i].items[j].productId.standardPrice*orders[i].items[j].qty %></span>
+																 <% }else{ %>
+																	 <span><i class="fa fa-dollar"></i><%= orders[i].items[j].productId.standardPrice*orders[i].items[j].qty %></span>
+																 <% } %>  
+															<%  }else if(orders[i].items[j].plan == "premium"){ %>
+																<% if(settings.currency == 'IND') {%> 
+																	<span> <i class="fa fa-rupee"></i><%= orders[i].items[j].productId.premiumPrice*orders[i].items[j].qty %> </span>
+																 <% }else{ %>
+																	 <span><i class="fa fa-dollar"></i><%= orders[i].items[j].productId.premiumPrice*orders[i].items[j].qty %> </span>
+																 <% } %> 
+															<% } %> 
+														</td>
+														<td><%= orders[i].items[j].qty %></td>
+														<td><%= orders[i].items[j].plan.toUpperCase() %></td>
+													</tr>
+												<% } %>
+												<% } %>   
+												</tbody>
+											</table>
+										</div>
+									</div>
+								</div>
+
+
+							</div>
+                        </div>
+                    </div>
+                </main>
+
+            </div>
+        </div>
+        <script src="/js/jquery-3.4.1.min.js"></script>
+        <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+		<script src="/vendor/chart/highcharts.js"></script>
+		<script src="/vendor/chart/exporting.js"></script>
+		<script src="/vendor/chart/export-data.js"></script>
+		<script src="/vendor/chart/accessibility.js"></script>
+        <script src="/js/scripts.js"></script>
+        <script src="/js/chart.js"></script>
+       
+    </body>
+
+<!-- Mirrored from gambolthemes.net/html-items/gambo_admin/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 05 Jun 2020 23:06:09 GMT -->
+</html>
